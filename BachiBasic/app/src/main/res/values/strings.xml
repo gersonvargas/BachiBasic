@@ -12,9 +12,18 @@
     <string name="drawer_open">Abrir navigation drawer</string>
     <string name="drawer_close">Cerrar navigation drawer</string>
     <string name="headlines">Sabias que?</string>
-    <string name="title_activity_actividad_login">ActividadLogin</string>
-    <string name="title_activity_actividad_preguntas">ActividadPreguntas</string>
-    <string name="title_activity_actividad_registrar">ActividadRegistrar</string>
-    <string name="title_activity_actividad_tutorial">ActividadTutorial</string>
-    <string name="title_activity_actividad_usuario">ActividadUsuario</string>
+    <string name="title_activity_actividad_login">Login</string>
+    <string name="title_activity_actividad_preguntas">Cuestionario</string>
+    <string name="title_activity_actividad_registrar">Registrarse</string>
+    <string name="title_activity_actividad_tutorial">Tutorial</string>
+    <string name="title_activity_actividad_usuario">Perfil</string>
+    <string name="title_activity_actividad_login2">Login</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_actividad_tutorial2">Tutorial</string>
 </resources>

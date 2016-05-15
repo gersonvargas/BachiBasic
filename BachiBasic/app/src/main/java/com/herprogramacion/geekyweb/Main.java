@@ -2,7 +2,6 @@ package com.herprogramacion.geekyweb;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
@@ -14,11 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -68,7 +63,6 @@ public class Main extends ActionBarActivity {
         items.add(new DrawerItem(tagTitles[3], R.drawable.registrar));
         items.add(new DrawerItem(tagTitles[4], R.drawable.usuario));
 
-
         // Relacionar el adaptador y la escucha de la lista del drawer
         drawerList.setAdapter(new DrawerListAdapter(this, items));
         drawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -87,11 +81,10 @@ public class Main extends ActionBarActivity {
         ) {
             public void onDrawerClosed(View view) {
                 getSupportActionBar().setTitle(itemTitle);
-
                 /*Usa este método si vas a modificar la action bar
                 con cada fragmento
                  */
-                //invalidateOptionsMenu();
+               // invalidateOptionsMenu();
             }
 
             public void onDrawerOpened(View drawerView) {
@@ -170,7 +163,6 @@ public void elegirVista(int position){
         Intent intento = new Intent(getApplicationContext(), ActividadUsuario.class);
         startActivity(intento);
     }
-
 }
     /* Método auxiliar para setear el titulo de la action bar */
     @Override

@@ -22,7 +22,7 @@ public class Base extends ActionBarActivity {
 
             public void onClick(View arg0) {
 
-                //  Intent intento = new Intent(getApplicationContext(),ActividadTutorial.class);
+
                 startActivity(intent);
             }
         });

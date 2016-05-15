@@ -16,8 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ActividadPreguntas extends Base  {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +80,6 @@ public class ActividadPreguntas extends Base  {
             @Override
 
             public void onClick(View arg0) {
-
                 cambiarPreguntas("La siguiente imagen muestra la ubicación del mar.");
                 ImageView midib = (ImageView)findViewById(R.id.imageView2);
                 midib.setImageResource(R.drawable.planeta);
@@ -108,8 +105,6 @@ public class ActividadPreguntas extends Base  {
     public void Mensaje(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
     public void DialogoSiNo(){
-// Uso:   DialogoSiNo(findViewById(R.id.btnNombreBoton))
-
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         builder1.setMessage("¿Estas seguro de salir?");
         builder1.setCancelable(true);
