@@ -104,8 +104,17 @@ public class Main extends ActionBarActivity {
         }
 
        // ajustarTabla();
+        playAudio();
+    }
+    public void playAudio() {
+        Intent objIntent = new Intent(this, Audio.class);
+        startService(objIntent);
     }
 
+    public void stopAudio() {
+        Intent objIntent = new Intent(this,Audio.class);
+        stopService(objIntent);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

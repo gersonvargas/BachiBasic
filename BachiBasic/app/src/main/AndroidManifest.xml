@@ -35,6 +35,7 @@
         <activity
             android:name=".ActividadTutorial"
             android:label="@string/title_activity_actividad_tutorial2"></activity>
+        <service android:name="Audio"  android:enabled="true"></service>
     </application>
 
 </manifest>
