@@ -7,7 +7,8 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class Audio extends Service{
-
+    private final static int MAX_VOLUME = 100;
+    private static float soundVolume=0;
     MediaPlayer objPlayer=new MediaPlayer();
 
     public void onCreate(){
@@ -34,6 +35,11 @@ public class Audio extends Service{
     public void onDestroy(){
         objPlayer.stop();
         objPlayer.release();
+    }
+    public void manageVolumen(){
+        final float volume = (float) (1 - (Math.log(MAX_VOLUME - soundVolume) / Math.log(MAX_VOLUME)));
+        soundVolume=volume;
+        objPlayer.setVolume(volume, volume);
     }
     @Override
     public IBinder onBind(Intent objIndent) {

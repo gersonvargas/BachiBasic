@@ -19,27 +19,11 @@ public class ActividadPreguntas extends Base  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_actividad_preguntas);
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
-
         CambiarColorFondoActivity(Color.GRAY);
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
         ImageView imgv = (ImageView) findViewById(R.id.imageViewbachi);
         Intent intento = new Intent(getApplicationContext(), Main.class);
         onclickImagenCambiarVista(imgv, intento);
-
         ajustarEventos();
-
-
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupRespuestas);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -53,7 +37,6 @@ public class ActividadPreguntas extends Base  {
                 if (rb2.isChecked()) {
                     Mensaje("dos");
                 }
-
                 if (rb3.isChecked()) {
                     Mensaje("tres");
                 }
@@ -65,10 +48,6 @@ public class ActividadPreguntas extends Base  {
     }
     @Override
     public void onBackPressed() {
-        //  Toast.makeText(getApplicationContext(), "Te atrape", Toast.LENGTH_LONG).show();
-        // super.onBackPressed(); habilite esto si desea que se devuelva con el boton back
-        //Button MiBoton = (Button) findViewById(R.id.button2);
-        // MiBoton.performClick();
         DialogoSiNo();
     }
     public void ajustarEventos(){
