@@ -5,9 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-/**
- * Created by Guaria on 4/14/2016.
- */
+
 public class Base extends ActionBarActivity {
     public static int opcMateria=0;
     //Ejemplo de uso:
