@@ -19,6 +19,7 @@ public class ActividadPreguntas extends Base  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_actividad_preguntas);
         CambiarColorFondoActivity(Color.GRAY);
         ImageView imgv = (ImageView) findViewById(R.id.imageViewbachi);
         Intent intento = new Intent(getApplicationContext(), Main.class);
@@ -54,15 +55,16 @@ public class ActividadPreguntas extends Base  {
         TextView preguta = (TextView) findViewById(R.id.editTextpreguntas);
         //preguta.setEnabled(false);
         Button MiBoton = (Button) findViewById(R.id.btnSiguiente);
-        MiBoton.setOnClickListener(new View.OnClickListener(){
+        MiBoton.setOnClickListener(new View.OnClickListener() {
 
             @Override
 
             public void onClick(View arg0) {
                 cambiarPreguntas("La siguiente imagen muestra la ubicación del mar.");
-                ImageView midib = (ImageView)findViewById(R.id.imageView2);
+                ImageView midib = (ImageView) findViewById(R.id.imageView2);
                 midib.setImageResource(R.drawable.planeta);
-                cambiarOpciones("Caspio","Caribe","Del Norte","Mediterraneo");
+                String[] opcs = {"Caspio", "Caribe", "Del Norte", "Mediterraneo"};
+                cambiarOpciones(opcs);
             }
 
         });
@@ -71,15 +73,17 @@ public class ActividadPreguntas extends Base  {
         TextView preguta = (TextView) findViewById(R.id.editTextpreguntas);
         preguta.setText(texto);
     }
-    public void cambiarOpciones(String opc1,String opc2,String opc3,String opc4){
-        RadioButton rb1 = (RadioButton) findViewById(R.id.radioButtonopc1);
-        rb1.setText(opc1);
-        RadioButton rb2 = (RadioButton) findViewById(R.id.radioButtonopc2);
-        rb2.setText(opc2);
-        RadioButton rb3 = (RadioButton) findViewById(R.id.radioButton3opc3);
-        rb3.setText(opc3);
-        RadioButton rb4 = (RadioButton) findViewById(R.id.radioButton4opc4);
-        rb4.setText(opc4);
+    public void cambiarOpciones(String []opcs){
+        if(opcs.length>3) {
+            RadioButton rb1 = (RadioButton) findViewById(R.id.radioButtonopc1);
+            rb1.setText(opcs[0]);
+            RadioButton rb2 = (RadioButton) findViewById(R.id.radioButtonopc2);
+            rb2.setText(opcs[1]);
+            RadioButton rb3 = (RadioButton) findViewById(R.id.radioButton3opc3);
+            rb3.setText(opcs[2]);
+            RadioButton rb4 = (RadioButton) findViewById(R.id.radioButton4opc4);
+            rb4.setText(opcs[3]);
+        }
     }
     public void Mensaje(String msg){
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
