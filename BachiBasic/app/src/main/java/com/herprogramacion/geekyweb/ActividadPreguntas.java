@@ -9,13 +9,17 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class ActividadPreguntas extends Base  {
+    static int i=-1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,13 +50,15 @@ public class ActividadPreguntas extends Base  {
                 }
             }
         });
+        Chronometer Mi_chronometer = (Chronometer) findViewById(R.id.chronometer);
+        Mi_chronometer.start();
     }
     @Override
-    public void onBackPressed() {
-        DialogoSiNo();
+    public void onBackPressed(){
+            DialogoSiNo();
     }
     public void ajustarEventos(){
-        TextView preguta = (TextView) findViewById(R.id.editTextpreguntas);
+        final TextView preguta = (TextView) findViewById(R.id.editTextpreguntas);
         //preguta.setEnabled(false);
         Button MiBoton = (Button) findViewById(R.id.btnSiguiente);
         MiBoton.setOnClickListener(new View.OnClickListener() {
@@ -60,11 +66,22 @@ public class ActividadPreguntas extends Base  {
             @Override
 
             public void onClick(View arg0) {
-                cambiarPreguntas("La siguiente imagen muestra la ubicación del mar.");
-                ImageView midib = (ImageView) findViewById(R.id.imageView2);
-                midib.setImageResource(R.drawable.planeta);
-                String[] opcs = {"Caspio", "Caribe", "Del Norte", "Mediterraneo"};
-                cambiarOpciones(opcs);
+                CrearBD();
+                ArrayList<Pregunta> preguntas=ObtenerDatos();
+                i++;
+                if(i<preguntas.size()) {
+                    Pregunta pre = preguntas.get(i);
+                    cambiarPreguntas(pre.getDescripcion());
+                    ImageView midib = (ImageView) findViewById(R.id.imageView2);
+                    String nombre="";
+
+                    midib.setImageResource(pre.getImagen());
+                    //String[] opcs = {"Caspio", "Caribe", "Del Norte", "Mediterraneo"};
+                    cambiarOpciones(pre.getOpciones());
+                }else{
+                    Mensaje("Ya no hay preguntas");
+                }
+
             }
 
         });

@@ -7,16 +7,22 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 public class DBAdapter {
-    static final String KEY_ROWID = "_id";
-    static final String KEY_ATRIBUTO01 = "atributo01";
-    static final String KEY_ATRIBUTO02 = "atributo02";
+    static final String KEY_ROWID = "numero";
+    static final String KEY_DESCRIPCION = "descripcion";
+    static final String KEY_OPC1 = "opc1";
+    static final String KEY_OPC2 = "opc2";
+    static final String KEY_OPC3 = "opc3";
+    static final String KEY_OPC4 = "opc4";
+    static final String KEY_IMAGEN = "imagen";
+    static final String KEY_CORRECTA = "opccorrecta";
     static final String TAG = "DBAdapter";
-    static final String DATABASE_NAME = "MiBaseDeDatosss.db";
+    static final String DATABASE_NAME = "BaseBachiBasic1.db";
     static final String DATABASE_TABLE = "pregunta";
     static final int DATABASE_VERSION = 1;
     static final String DATABASE_CREATE =
-            "create table pregunta (_id integer primary key autoincrement, "
-                    + "atributo01 text not null, atributo02 text not null);";
+            "create table pregunta (numero integer primary key autoincrement, "
+                    + "descripcion text not null, opc1 text not null,opc2 text not null,opc3 text not null" +
+                    ",opc4 text not null,opccorrecta text not null,imagen text not null);";
     final Context context;
     DatabaseHelper DBHelper;
     SQLiteDatabase db;
@@ -58,14 +64,20 @@ public class DBAdapter {
     //---Cerramos la base de datos ---
     public void close()
     {
+
         DBHelper.close();
     }
     //---Insertamos un dato en la BD---
-    public long insertDato(String atributo01, String atributo02)
+    public long insertDato(Pregunta pregunta)
     {
         ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_ATRIBUTO01, atributo01);
-        initialValues.put(KEY_ATRIBUTO02, atributo02);
+        initialValues.put(KEY_DESCRIPCION, pregunta.getDescripcion());
+        initialValues.put(KEY_CORRECTA, pregunta.getRespuesta());
+        initialValues.put(KEY_OPC1, pregunta.getOpciones()[0]);
+        initialValues.put(KEY_OPC2, pregunta.getOpciones()[1]);
+        initialValues.put(KEY_OPC3, pregunta.getOpciones()[2]);
+        initialValues.put(KEY_OPC4, pregunta.getOpciones()[3]);
+        initialValues.put(KEY_IMAGEN, pregunta.getImagen());
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
     //---Borramos un dato particular---
@@ -73,18 +85,23 @@ public class DBAdapter {
     {
         return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
     }
+    public boolean BorrarDatos()
+    {
+
+        return db.delete(DATABASE_TABLE,"1=1", null) > 0;
+    }
     //---Recuperamos todo los datos---
     public Cursor CargarTodosLosDatos()
     {
-        return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_ATRIBUTO01,
-                KEY_ATRIBUTO02}, null, null, null, null, null);
+        return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_DESCRIPCION,
+                KEY_OPC1,KEY_OPC2,KEY_OPC3,KEY_OPC4,KEY_CORRECTA,KEY_IMAGEN}, null, null, null, null, null);
     }
     //---recuperamos un dato particular---
     public Cursor ObtenerDato(long rowId) throws SQLException
     {
         Cursor mCursor =
-                db.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                                KEY_ATRIBUTO01, KEY_ATRIBUTO02}, KEY_ROWID + "=" + rowId, null,
+                db.query(true, DATABASE_TABLE, new String[] {KEY_ROWID, KEY_DESCRIPCION,
+                                KEY_OPC1,KEY_OPC2,KEY_OPC3,KEY_OPC4,KEY_CORRECTA,KEY_IMAGEN}, KEY_ROWID + "=" + rowId, null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -92,13 +109,18 @@ public class DBAdapter {
         return mCursor;
     }
     //---Actualizamos un dato---
-    public boolean ActualizarDato(long rowId, String atributo01, String atributo02)
+    public boolean ActualizarDato(Pregunta pregunta)
     {
         ContentValues args = new ContentValues();
-        args.put(KEY_ATRIBUTO01, atributo01);
-        args.put(KEY_ATRIBUTO02, atributo02);
+        args.put(KEY_DESCRIPCION, pregunta.getDescripcion());
+        args.put(KEY_CORRECTA, pregunta.getRespuesta());
+        args.put(KEY_OPC1, pregunta.getOpciones()[0]);
+        args.put(KEY_OPC2, pregunta.getOpciones()[1]);
+        args.put(KEY_OPC3, pregunta.getOpciones()[2]);
+        args.put(KEY_OPC4, pregunta.getOpciones()[3]);
+        args.put(KEY_IMAGEN, pregunta.getImagen());
         return db.update(
-                DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+                DATABASE_TABLE, args, KEY_ROWID + "=" + pregunta.getNumero(), null) > 0;
     }
 }
 

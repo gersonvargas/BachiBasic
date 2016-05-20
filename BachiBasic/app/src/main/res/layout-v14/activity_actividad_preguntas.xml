@@ -38,9 +38,11 @@
         android:text="Medium Text"
         android:textColor="#FFFFFF"
         android:textSize="50dp"
-        android:layout_above="@+id/scrollView"
+        android:layout_alignBottom="@+id/progressBar"
         android:layout_alignRight="@+id/scrollView"
-        android:layout_alignEnd="@+id/scrollView" />
+        android:layout_alignEnd="@+id/scrollView"
+        android:layout_toRightOf="@+id/textViewtiempotranscurrido"
+        android:layout_toEndOf="@+id/textViewtiempotranscurrido" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,18 +50,19 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="% completado"
         android:id="@+id/textViewtiempotranscurrido"
-        android:layout_above="@+id/progressBar"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignBottom="@+id/imageViewbachi"
+        android:layout_toRightOf="@+id/imageViewbachi"
+        android:layout_toEndOf="@+id/imageViewbachi" />
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView"
         android:fillViewport="false"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/progressBar"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">
 
@@ -72,8 +75,8 @@
             android:layout_below="@+id/progressBar">
 
             <TextView
-                android:layout_width="336dp"
-                android:layout_height="140dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="New Text"
                 android:id="@+id/editTextpreguntas"
                 android:layout_toRightOf="@+id/scrollView"
@@ -83,28 +86,28 @@
                 android:layout_above="@+id/scrollView2"
                 android:layout_row="0"
                 android:layout_column="0"
-                android:layout_rowSpan="7"
-                android:layout_columnSpan="11" />
+                android:layout_rowSpan="7" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:id="@+id/imageView2"
                 android:src="@drawable/logo"
                 android:layout_below="@+id/progressBar"
                 android:layout_toRightOf="@+id/progressBar"
                 android:layout_toEndOf="@+id/progressBar"
-                android:layout_row="7"
-                android:layout_column="0" />
+                android:layout_row="0"
+                android:layout_column="10"
+                android:layout_rowSpan="7" />
 
             <RadioGroup
-                android:layout_width="160dp"
+                android:layout_width="107dp"
                 android:layout_height="150dp"
                 android:id="@+id/radioGroupRespuestas"
                 android:layout_below="@+id/imageView2"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_row="8"
+                android:layout_row="7"
                 android:layout_column="0">
 
                 <RadioButton
@@ -136,6 +139,7 @@
                     android:checked="false" />
 
                 <Button
+                    style="?android:attr/buttonStyleSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#0baff0"
@@ -143,6 +147,7 @@
                     android:id="@+id/btnSiguiente" />
 
             </RadioGroup>
+
 
         </GridLayout>
     </ScrollView>

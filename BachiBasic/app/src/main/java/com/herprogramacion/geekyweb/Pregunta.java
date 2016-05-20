@@ -10,12 +10,22 @@ public class Pregunta {
     String []opciones;
     int numero;
     int respuesta;
+    int imagen;
 
-    public Pregunta(String descripcion,String []opciones, int numero, int respuesta) {
+    public Pregunta(String descripcion,String []opciones, int numero, int respuesta,int imagen) {
         this.descripcion = descripcion;
         this.opciones=opciones;
         this.numero = numero;
         this.respuesta = respuesta;
+        this.imagen=imagen;
+    }
+
+    public int getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
     }
 
     public String getDescripcion() {

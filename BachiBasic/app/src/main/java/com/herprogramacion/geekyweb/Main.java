@@ -13,12 +13,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 
-public class Main extends ActionBarActivity {
+public class Main extends Base {
 
     /*
      DECLARACIONES
@@ -36,17 +37,7 @@ public class Main extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       /* Button miboton= (Button) findViewById(R.id.btndetalles);
-        miboton.setText("Ver");
-        miboton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View arg0) {
-                Intent intento = new Intent(getApplicationContext(), ActividadPreguntas.class);
-                startActivity(intento);
-
-            }
-        });*/
         itemTitle = activityTitle = getTitle();
         tagTitles = getResources().getStringArray(R.array.Tags);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -103,8 +94,22 @@ public class Main extends ActionBarActivity {
             selectItem(0);
         }
 
-       // ajustarTabla();
         playAudio();
+        inicializarBase();
+    }
+    public void inicializarBase(){
+        CrearBD();
+    if(BorrarDatos()){
+         Mensaje("Se ha limpiado la base de datos!");
+    }
+        //String descripcion,String []opciones, int numero, int respuesta
+        String []opcs={"opc1","opc2","opc3","opc4"};
+        for(int i=0;i<4;i++)
+        AgregarDato(new Pregunta("Pregunta sobre no se que Pregunta sobre no se que " +
+                "Pregunta sobre no se que Pregunta sobre no se que" +
+                "Pregunta sobre no se que" +
+                "Pregunta sobre no se que" +
+                "Pregunta sobre no se que "+i, opcs, 1, 2,R.drawable.question));
     }
     public void playAudio() {
         Intent objIntent = new Intent(this, Audio.class);
