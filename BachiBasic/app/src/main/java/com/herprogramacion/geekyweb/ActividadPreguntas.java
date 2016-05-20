@@ -51,7 +51,44 @@ public class ActividadPreguntas extends Base  {
             }
         });
         Chronometer Mi_chronometer = (Chronometer) findViewById(R.id.chronometer);
+
         Mi_chronometer.start();
+        advertir();
+
+    }
+    public void advertir(){
+        boolean continua=true;
+        Thread threadCliente;
+        Chronometer Mi_chronometer = (Chronometer) findViewById(R.id.chronometer);
+       final String[]crono=Mi_chronometer.getText().toString().split(":");
+       // while (continua) {
+            threadCliente = new Thread() {
+                @Override
+                public void run() {
+
+                       // Mensaje(crono.toString());
+                        if ((Integer.parseInt(crono[1])) > 30) {
+
+                            playAudio();
+                        }
+
+                }
+            };
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException ex) {
+               // Logger.getLogger(Conexion_Erlang.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if((Integer.parseInt(crono[1]))>30) {
+                continua = false;
+            }
+            threadCliente.start();
+       // }
+
+    }
+    public void playAudio() {
+        Intent objIntent = new Intent(this, Audio.class);
+        startService(objIntent);
     }
     @Override
     public void onBackPressed(){
@@ -67,18 +104,18 @@ public class ActividadPreguntas extends Base  {
 
             public void onClick(View arg0) {
                 CrearBD();
-                ArrayList<Pregunta> preguntas=ObtenerDatos();
+                ArrayList<Pregunta> preguntas = ObtenerDatos();
                 i++;
-                if(i<preguntas.size()) {
+                if (i < preguntas.size()) {
                     Pregunta pre = preguntas.get(i);
                     cambiarPreguntas(pre.getDescripcion());
                     ImageView midib = (ImageView) findViewById(R.id.imageView2);
-                    String nombre="";
+                    String nombre = "";
 
                     midib.setImageResource(pre.getImagen());
                     //String[] opcs = {"Caspio", "Caribe", "Del Norte", "Mediterraneo"};
                     cambiarOpciones(pre.getOpciones());
-                }else{
+                } else {
                     Mensaje("Ya no hay preguntas");
                 }
 

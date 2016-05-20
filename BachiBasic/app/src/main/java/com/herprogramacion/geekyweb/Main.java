@@ -94,7 +94,7 @@ public class Main extends Base {
             selectItem(0);
         }
 
-        playAudio();
+       // playAudio();
         inicializarBase();
     }
     public void inicializarBase(){
