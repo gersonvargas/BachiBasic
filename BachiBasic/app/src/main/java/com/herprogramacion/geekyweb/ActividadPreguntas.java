@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -65,7 +66,7 @@ public class ActividadPreguntas extends Base  {
             threadCliente = new Thread() {
                 @Override
                 public void run() {
-
+                    Log.d("Gerson","Vargas");
                        // Mensaje(crono.toString());
                         if ((Integer.parseInt(crono[1])) > 30) {
 
