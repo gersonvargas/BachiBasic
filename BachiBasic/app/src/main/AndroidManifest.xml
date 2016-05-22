@@ -11,12 +11,14 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".Main"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:launchMode="singleTask">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -35,7 +37,7 @@
         <activity
             android:name=".ActividadTutorial"
             android:label="@string/title_activity_actividad_tutorial2"></activity>
-        <service android:name="Audio"  android:enabled="true"></service>
+
     </application>
 
 </manifest>

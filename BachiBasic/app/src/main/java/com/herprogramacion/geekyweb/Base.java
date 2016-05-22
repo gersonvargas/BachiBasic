@@ -2,6 +2,7 @@ package com.herprogramacion.geekyweb;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -108,4 +109,17 @@ public class Base extends ActionBarActivity {
         return pregunta;
     }
 
+    MediaPlayer misonido;
+
+    public void ReproducirAudio(int opc){
+        misonido = MediaPlayer.create(this,opc);
+        misonido.start();
+
+    }
+
+    public void PararReproducirAudio(){
+        if(misonido!=null)
+        misonido.stop();
+
+    }
 }

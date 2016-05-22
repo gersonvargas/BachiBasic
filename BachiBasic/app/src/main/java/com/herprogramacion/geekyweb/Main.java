@@ -109,17 +109,9 @@ public class Main extends Base {
                 "Pregunta sobre no se que Pregunta sobre no se que" +
                 "Pregunta sobre no se que" +
                 "Pregunta sobre no se que" +
-                "Pregunta sobre no se que "+i, opcs, 1, 2,R.drawable.question));
-    }
-    public void playAudio() {
-        Intent objIntent = new Intent(this, Audio.class);
-        startService(objIntent);
+                "Pregunta sobre no se que "+i, opcs, 1, 1,R.drawable.question));
     }
 
-    public void stopAudio() {
-        Intent objIntent = new Intent(this,Audio.class);
-        stopService(objIntent);
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
