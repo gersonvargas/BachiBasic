@@ -39,11 +39,18 @@ public class ActividadTutorial extends Base
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-        WebView webView = (WebView) findViewById(R.id.webView);
-        webView.setWebViewClient(new Callback());
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setBuiltInZoomControls(true);
-        webView.loadUrl("http://www2.uned.es/091279/biologia-cad/examenes_de_biologia.htm");
+        String frameVideo = "<html><body>Video From YouTube<br><iframe width=\"420\" height=\"315\" src=\"https://www.youtube.com/embed/47yJ2XCRLZs\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
+
+        WebView displayYoutubeVideo = (WebView) findViewById(R.id.webView);
+        displayYoutubeVideo.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
+        WebSettings webSettings = displayYoutubeVideo.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        displayYoutubeVideo.loadData(frameVideo, "text/html", "utf-8");
 
 
         ImageView imgv = (ImageView) findViewById(R.id.imageViewbachi);

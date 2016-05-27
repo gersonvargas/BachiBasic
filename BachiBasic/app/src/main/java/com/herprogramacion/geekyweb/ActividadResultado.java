@@ -1,8 +1,13 @@
 package com.herprogramacion.geekyweb;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.Chronometer;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -22,7 +27,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-public class ActividadResultado extends ActionBarActivity {
+public class ActividadResultado extends Base{
   VariablesGlobales vg=VariablesGlobales.getInstance();
   RelativeLayout panelprincipal;
 private PieChart grafico;
@@ -61,12 +66,8 @@ private PieChart grafico;
         chart.setData(data);
         chart.setDescription("# of times Alice called Bob");*/
         grafico=new PieChart(this);
-
-      RelativeLayout.LayoutParams params =
-              new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-   //   panelprincipal.addView(grafico,params);
-      setContentView(grafico);
+        setContentView(grafico);
+      grafico.setBackgroundColor(Color.rgb(44,140,211));
         grafico.setUsePercentValues(true);
         grafico.setDescription("Puntos del examen.");
         grafico.setHoleColor(Color.TRANSPARENT);
@@ -80,7 +81,7 @@ grafico.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
   public void onValueSelected(Entry entry, int i, Highlight highlight) {
     if (entry == null)
       return;
-    Mensaje(entry.getVal() + "");
+    Mensaje("# preguntas: " + entry.getVal());
   }
 
   @Override
@@ -125,14 +126,36 @@ private void addData(){
 
   PieData data=new PieData(xVal,dataset);
   data.setValueFormatter(new PercentFormatter());
-  data.setValueTextSize(11f);
-  data.setValueTextColor(Color.GRAY);
+  data.setValueTextSize(16f);
+  data.setValueTextColor(Color.BLACK);
   grafico.setData(data);
 
   grafico.highlightValues(null);
 
   grafico.invalidate();
 }
-  public void Mensaje(String msg){
-    Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
+  @Override
+  public void onBackPressed() {
+    DialogoSiNo();
+  }
+  public void DialogoSiNo(){
+    AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+    builder1.setMessage("¿Estas seguro de salir?");
+    builder1.setCancelable(true);
+    builder1.setPositiveButton("Sí",
+            new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int id) {
+                Intent intento = new Intent(getApplicationContext(), Main.class);
+                startActivity(intento);
+              } });
+               builder1.setNegativeButton("No",
+            new DialogInterface.OnClickListener() {
+              public void onClick(DialogInterface dialog, int id) {
+                // Mensaje("negativo");
+              }
+            });
+    AlertDialog alert11 = builder1.create();
+    alert11.show();
+  };
+
 }
