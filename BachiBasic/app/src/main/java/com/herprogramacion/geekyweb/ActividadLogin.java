@@ -54,6 +54,7 @@ public class ActividadLogin extends Base
             @Override
 
             public void onClick(View arg0) {
+
                 CrearBD();
                 TextView Mi_textview = (TextView) findViewById(R.id.loginemail);
                 Mensaje(Mi_textview.getText().toString());

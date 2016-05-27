@@ -148,6 +148,7 @@ Mensaje(Environment.getExternalStorageDirectory().toString());
              */
         } else if (requestCode == SELECT_PICTURE){
             Uri selectedImage = data.getData();
+            Mensaje(selectedImage.getPath());
             InputStream is;
             try {
                 is = getContentResolver().openInputStream(selectedImage);

@@ -9,8 +9,16 @@ import android.widget.Toast;
  */
 public class VariablesGlobales {
     private static VariablesGlobales instance = null;
-    private static DBAdapter db;
-    protected VariablesGlobales() {}
+
+   private int correctas;
+    private int incorretas;
+    private int cantidadPreguntas;
+
+    protected VariablesGlobales() {
+        this.correctas=0;
+        this.incorretas=0;
+        this.cantidadPreguntas=0;
+    }
     public static VariablesGlobales getInstance() {
         if(instance == null) {
             instance = new VariablesGlobales();
@@ -20,6 +28,27 @@ public class VariablesGlobales {
     //Colocar en la clase Base
 
 
+    public int getCorrectas() {
+        return correctas;
+    }
 
+    public void setCorrectas(int correctas) {
+        this.correctas = correctas;
+    }
 
+    public int getIncorretas() {
+        return incorretas;
+    }
+
+    public void setIncorretas(int incorretas) {
+        this.incorretas = incorretas;
+    }
+
+    public int getCantidadPreguntas() {
+        return cantidadPreguntas;
+    }
+
+    public void setCantidadPreguntas(int cantidadPreguntas) {
+        this.cantidadPreguntas = cantidadPreguntas;
+    }
 }

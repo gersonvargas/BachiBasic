@@ -93,8 +93,7 @@ static boolean continua=true;
     }
     public void ajustarEventos(){
         final TextView preguta = (TextView) findViewById(R.id.editTextpreguntas);
-        //preguta.setEnabled(false);
-       // opcionSeleccionada();
+
         CrearBD();
        final ArrayList<Pregunta> preguntas = ObtenerDatos();
         Button MiBoton = (Button) findViewById(R.id.btnSiguiente);
@@ -102,17 +101,18 @@ static boolean continua=true;
             @Override
 
             public void onClick(View arg0) {
-
+                VariablesGlobales vg = VariablesGlobales.getInstance();
                 opcionSeleccionada();
-                if(opcionSeleccionada!=-1) {
-
+                if (opcionSeleccionada != -1) {
                     i++;
                     if (i < preguntas.size()) {
                         Pregunta pre = preguntas.get(i);
-                        if(pre.getRespuesta()!=opcionSeleccionada){
+                        if (pre.getRespuesta() != opcionSeleccionada) {
                             ReproducirAudio(R.raw.puapua);
-                        }else{
+                            vg.setIncorretas(vg.getIncorretas() + 1);
+                        } else {
                             ReproducirAudio(R.raw.correcto);
+                            vg.setCorrectas(vg.getCorrectas() + 1);
                         }
                         cambiarPreguntas(pre.getDescripcion());
                         ImageView midib = (ImageView) findViewById(R.id.imageView2);
@@ -121,12 +121,21 @@ static boolean continua=true;
                         midib.setImageResource(pre.getImagen());
                         //String[] opcs = {"Caspio", "Caribe", "Del Norte", "Mediterraneo"};
                         cambiarOpciones(pre.getOpciones());
-                        opcionSeleccionada=-1;
+                        opcionSeleccionada = -1;
                         //limpiarElementos();
                     } else {
-                        Mensaje("Cuestionario Finalizado!");
+                        i = -1;
+                        vg.setCantidadPreguntas(preguntas.size());
+                        PararReproducirAudio();
+                        Chronometer Mi_chronometer = (Chronometer) findViewById(R.id.chronometer);
+                        Mi_chronometer.setBase(SystemClock.elapsedRealtime());
+                        Intent intento = new Intent(getApplicationContext(), ActividadResultado.class);
+                        startActivity(intento);
+
+                        // Mensaje("Cuestionario Finalizado!"+" correctas: "+vg.getCorrectas()+" Incorrectas "+
+                        // vg.getIncorretas()+" cantidadPreguntas"+vg.getCantidadPreguntas());
                     }
-                }else{
+                } else {
                     Mensaje("Debe elegir una opción");
                 }
             }
@@ -175,5 +184,6 @@ static boolean continua=true;
         AlertDialog alert11 = builder1.create();
         alert11.show();
     };
+
 }
 
