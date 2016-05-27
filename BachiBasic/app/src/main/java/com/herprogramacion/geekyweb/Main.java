@@ -49,7 +49,7 @@ public class Main extends Base {
         //Crear elementos de la lista
         ArrayList<DrawerItem> items = new ArrayList<DrawerItem>();
         items.add(new DrawerItem(tagTitles[0], R.drawable.gracias));
-        items.add(new DrawerItem(tagTitles[1], R.drawable.help));
+        items.add(new DrawerItem(tagTitles[1], R.drawable.youtube));
         items.add(new DrawerItem(tagTitles[2], R.drawable.login));
         items.add(new DrawerItem(tagTitles[3], R.drawable.registrar));
         items.add(new DrawerItem(tagTitles[4], R.drawable.usuario));
