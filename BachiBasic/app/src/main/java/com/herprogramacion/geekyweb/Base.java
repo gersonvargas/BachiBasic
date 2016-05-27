@@ -51,6 +51,17 @@ public class Base extends ActionBarActivity {
 
         db.close();
     }
+    public boolean AgregarUsuario(String nombre,String ap1,String ap2,String email) {
+        db.open();
+        boolean bandera=false;
+        if (db.insertUsuario(nombre, ap1, ap2, email) >= 0) {
+            Mensaje("Pregunta agregada correctamente: "+email);
+           bandera=true;
+        }
+
+        db.close();
+        return bandera;
+    }
     public boolean BorrarDatos(){
         db.open();
         return db.BorrarDatos();
@@ -78,6 +89,17 @@ public class Base extends ActionBarActivity {
         else
             Mensaje("No se encontró el dato");
         db.close();
+    }
+    public boolean ObtenerUsuario(String email) {
+        //---cargar un contacto ---
+        boolean bandera=false;
+        db.open();
+        Cursor c = db.ObtenerUsuario(email);
+        if (c.moveToFirst()) {
+            bandera=true;
+        }
+        db.close();
+        return bandera;
     }
     public void ActualizarDato(Pregunta pregunta) {
         //---update a contact---
@@ -108,6 +130,7 @@ public class Base extends ActionBarActivity {
        // Mensaje("pregunta recuperada" );
         return pregunta;
     }
+
 
     MediaPlayer misonido;
 

@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,14 +38,16 @@ public class ActividadRegistrar extends Base {
             @Override
 
             public void onClick(View arg0) {
-                Intent intento = new Intent(getApplicationContext(), ActividadLogin.class);
-                startActivity(intento);
+                if(agregarUsuario()) {
+                    Intent intento = new Intent(getApplicationContext(), ActividadLogin.class);
+                    startActivity(intento);
+                }else{Mensaje("El usuario no ha sido insertado!, verifique los datos ingresados");}
             }
         });
         ImageView imgv = (ImageView) findViewById(R.id.imageViewbachi);
         Intent intento = new Intent(getApplicationContext(), Main.class);
         onclickImagenCambiarVista(imgv, intento);
-        boton = (Button) findViewById(R.id.btnregistrar);
+      /*  boton = (Button) findViewById(R.id.btnregistrar);
            //Si no existe crea la carpeta donde se guardaran las fotos
            file.mkdirs();
            //accion para el boton
@@ -71,7 +74,25 @@ public class ActividadRegistrar extends Base {
                    startActivityForResult(cameraIntent, 0);
                }
 
-           });
+           });*/
+    }
+    public boolean agregarUsuario(){
+
+        CrearBD();
+        TextView Mi_textview = (TextView) findViewById(R.id.txtnombre);
+        String nombre=Mi_textview.getText().toString();
+        Mi_textview = (TextView) findViewById(R.id.txtap1);
+        String ap1=Mi_textview.getText().toString();
+        Mi_textview = (TextView) findViewById(R.id.txtap2);
+        String ap2=Mi_textview.getText().toString();
+        Mi_textview = (TextView) findViewById(R.id.txtemail);
+        String email=Mi_textview.getText().toString();
+        if(AgregarUsuario(nombre,ap1,ap2,email)){
+            return true;
+        }else
+            return false;
+
+
     }
     @SuppressLint("SimpleDateFormat")
       private String getCode()

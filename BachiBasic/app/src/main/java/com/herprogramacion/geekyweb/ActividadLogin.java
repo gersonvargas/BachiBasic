@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ActividadLogin extends Base
@@ -53,11 +54,18 @@ public class ActividadLogin extends Base
             @Override
 
             public void onClick(View arg0) {
-                if (valido) {
-                    Intent intento = new Intent(getApplicationContext(), ActividadPreguntas.class);
-                    startActivity(intento);
-                }else
-                    Mensaje("Debe elegir una Materia.");
+                CrearBD();
+                TextView Mi_textview = (TextView) findViewById(R.id.loginemail);
+                Mensaje(Mi_textview.getText().toString());
+                if (ObtenerUsuario(Mi_textview.getText().toString())) {
+                    if (valido) {
+                        Intent intento = new Intent(getApplicationContext(), ActividadPreguntas.class);
+                        startActivity(intento);
+                    } else
+                        Mensaje("Debe elegir una Materia.");
+                }else{
+                    Mensaje("No se ha encontrado el usuario!");
+                }
             }
         });
 

@@ -72,7 +72,8 @@
                 android:width="200px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="2" />
+                android:layout_column="2"
+                android:id="@+id/txtnombre" />
         </TableRow>
 
         <TableRow>
@@ -86,7 +87,8 @@
                 android:width="200px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="2" />
+                android:layout_column="2"
+                android:id="@+id/txtap1" />
 
             <TextView
                 android:width="100px"
@@ -104,7 +106,8 @@
                 android:width="100px"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="2" />
+                android:layout_column="2"
+                android:id="@+id/txtap2" />
         </TableRow>
         <TableRow>
             <TextView
@@ -117,7 +120,8 @@
                 android:inputType="textEmailAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="2" />
+                android:layout_column="2"
+                android:id="@+id/txtemail" />
         </TableRow>
 
         <TableRow

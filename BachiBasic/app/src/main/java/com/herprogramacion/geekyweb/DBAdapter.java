@@ -16,13 +16,20 @@ public class DBAdapter {
     static final String KEY_IMAGEN = "imagen";
     static final String KEY_CORRECTA = "opccorrecta";
     static final String TAG = "DBAdapter";
-    static final String DATABASE_NAME = "BaseBachiBasic1.db";
+    static final String DATABASE_NAME = "Base_BachiBasic.db";
     static final String DATABASE_TABLE = "pregunta";
     static final int DATABASE_VERSION = 1;
     static final String DATABASE_CREATE =
             "create table pregunta (numero integer primary key autoincrement, "
                     + "descripcion text not null, opc1 text not null,opc2 text not null,opc3 text not null" +
                     ",opc4 text not null,opccorrecta text not null,imagen text not null);";
+    static final String KEY_NOMBRE = "nombre";
+    static final String KEY_AP1 = "apellido1";
+    static final String KEY_AP2 = "apellido2";
+    static final String KEY_EMAIL= "email";
+    static final String DATABASE_CREATE_USUARIO ="create table usuario (nombre text not null,apellido1 text not null," +
+            "apellido2 text not null,email text primary key);";
+
     final Context context;
     DatabaseHelper DBHelper;
     SQLiteDatabase db;
@@ -37,6 +44,7 @@ public class DBAdapter {
     {
         DatabaseHelper(Context context)
         {
+
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
         @Override
@@ -44,6 +52,7 @@ public class DBAdapter {
         {
             try {
                 db.execSQL(DATABASE_CREATE);
+                db.execSQL(DATABASE_CREATE_USUARIO);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -52,6 +61,7 @@ public class DBAdapter {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
         {
             db.execSQL("DROP TABLE IF EXISTS pregunta");
+            db.execSQL("DROP TABLE IF EXISTS usuario");
             onCreate(db);
         }
     }
@@ -80,15 +90,34 @@ public class DBAdapter {
         initialValues.put(KEY_IMAGEN, pregunta.getImagen());
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
+    //---Insertamos un dato en la BD---
+    public long insertUsuario(String nombre, String ap1,String ap2,String email)
+    {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put(KEY_NOMBRE, nombre);
+        initialValues.put(KEY_AP1,ap1);
+        initialValues.put(KEY_AP2,ap2);
+        initialValues.put(KEY_EMAIL,email);
+        return db.insert("usuario", null, initialValues);
+    }
     //---Borramos un dato particular---
     public boolean BorrarDato(long rowId)
     {
         return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
     }
+    public boolean BorrarUsuario(String email)
+    {
+        return db.delete("usuario", KEY_EMAIL + "=" + email, null) > 0;
+    }
     public boolean BorrarDatos()
     {
 
         return db.delete(DATABASE_TABLE,"1=1", null) > 0;
+    }
+    public boolean BorrarUsuarios()
+    {
+
+        return db.delete("usuario","1=1", null) > 0;
     }
     //---Recuperamos todo los datos---
     public Cursor CargarTodosLosDatos()
@@ -96,12 +125,28 @@ public class DBAdapter {
         return db.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_DESCRIPCION,
                 KEY_OPC1,KEY_OPC2,KEY_OPC3,KEY_OPC4,KEY_CORRECTA,KEY_IMAGEN}, null, null, null, null, null);
     }
+    public Cursor CargarTodosLosUsuarios()
+    {
+        return db.query("usuario", new String[] {KEY_NOMBRE, KEY_AP1,
+                KEY_AP2,KEY_EMAIL}, null, null, null, null, null);
+    }
     //---recuperamos un dato particular---
     public Cursor ObtenerDato(long rowId) throws SQLException
     {
         Cursor mCursor =
                 db.query(true, DATABASE_TABLE, new String[] {KEY_ROWID, KEY_DESCRIPCION,
                                 KEY_OPC1,KEY_OPC2,KEY_OPC3,KEY_OPC4,KEY_CORRECTA,KEY_IMAGEN}, KEY_ROWID + "=" + rowId, null,
+                        null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+    public Cursor ObtenerUsuario(String email) throws SQLException
+    {
+        Cursor mCursor =
+                db.query(true, "usuario", new String[] {KEY_NOMBRE, KEY_AP1,
+                                KEY_AP2,KEY_EMAIL}, KEY_EMAIL + "=\"" + email+"\"", null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -121,6 +166,16 @@ public class DBAdapter {
         args.put(KEY_IMAGEN, pregunta.getImagen());
         return db.update(
                 DATABASE_TABLE, args, KEY_ROWID + "=" + pregunta.getNumero(), null) > 0;
+    }
+    //---Actualizamos un dato---
+    public boolean ActualizarUsuario(String nombre, String ap1,String ap2,String email)
+    {
+        ContentValues args = new ContentValues();
+        args.put(KEY_NOMBRE, nombre);
+        args.put(KEY_AP1, ap1);
+        args.put(KEY_AP2, ap2);
+        return db.update(
+                "usuario", args, KEY_EMAIL + "=" + email, null) > 0;
     }
 }
 

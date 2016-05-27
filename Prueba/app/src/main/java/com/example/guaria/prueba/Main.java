@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -44,9 +45,8 @@ public class Main extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+Mensaje(Environment.getExternalStorageDirectory().toString());
         name = Environment.getExternalStorageDirectory() + "/test.jpg";
-
         Button btnAction = (Button)findViewById(R.id.btnPic);
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +94,14 @@ public class Main extends AppCompatActivity {
         });
     }
 
+    public void Mensaje(String msg){
+        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
     /**
      * Funci—n que se ejecuta cuando concluye el intent en el que se solicita una imagen
      * ya sea de la c‡mara o de la galer’a
      */
-    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         /**
          * Se revisa si la imagen viene de la c‡mara (TAKE_PICTURE) o de la galer’a (SELECT_PICTURE)
          */

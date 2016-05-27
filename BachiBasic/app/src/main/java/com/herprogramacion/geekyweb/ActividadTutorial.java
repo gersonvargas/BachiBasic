@@ -43,7 +43,7 @@ public class ActividadTutorial extends Base
         webView.setWebViewClient(new Callback());
         WebSettings webSettings = webView.getSettings();
         webSettings.setBuiltInZoomControls(true);
-        webView.loadUrl("https://www.google.com/");
+        webView.loadUrl("http://www2.uned.es/091279/biologia-cad/examenes_de_biologia.htm");
 
 
         ImageView imgv = (ImageView) findViewById(R.id.imageViewbachi);

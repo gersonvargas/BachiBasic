@@ -28,12 +28,9 @@ public class ActividadPreguntas extends Base  {
         Intent intento = new Intent(getApplicationContext(), Main.class);
         onclickImagenCambiarVista(imgv, intento);
         ajustarEventos();
-
         Chronometer Mi_chronometer = (Chronometer) findViewById(R.id.chronometer);
-
         Mi_chronometer.start();
         advertir();
-
     }
 
     public void opcionSeleccionada(){
@@ -43,19 +40,19 @@ public class ActividadPreguntas extends Base  {
                 RadioButton rb4 = (RadioButton) findViewById(R.id.radioButton4opc4);
                 if (rb1.isChecked()) {
                     opcionSeleccionada = 1;
-                    Mensaje(opcionSeleccionada + "");
+                   // Mensaje(opcionSeleccionada + "");
                 }
                 if (rb2.isChecked()) {
                     opcionSeleccionada = 2;
-                    Mensaje(opcionSeleccionada + "");
+                   // Mensaje(opcionSeleccionada + "");
                 }
                 if (rb3.isChecked()) {
                     opcionSeleccionada = 3;
-                    Mensaje(opcionSeleccionada + "");
+                  //  Mensaje(opcionSeleccionada + "");
                 }
                 if (rb4.isChecked()) {
                     opcionSeleccionada = 4;
-                    Mensaje(opcionSeleccionada + "");
+                   // Mensaje(opcionSeleccionada + "");
                 }
 
 
