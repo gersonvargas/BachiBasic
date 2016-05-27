@@ -2,6 +2,7 @@ package com.herprogramacion.geekyweb;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,10 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActividadTutorial extends Base
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -39,21 +47,10 @@ public class ActividadTutorial extends Base
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-        String frameVideo = "<html><body>Video From YouTube<br><iframe width=\"420\" height=\"315\" src=\"https://www.youtube.com/embed/47yJ2XCRLZs\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
-
-        WebView displayYoutubeVideo = (WebView) findViewById(R.id.webView);
-        displayYoutubeVideo.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        });
-        WebSettings webSettings = displayYoutubeVideo.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        displayYoutubeVideo.loadData(frameVideo, "text/html", "utf-8");
-
-
-        ImageView imgv = (ImageView) findViewById(R.id.imageViewbachi);
+        populateCarList();
+        populateListView();
+        registerClickCallback();
+                ImageView imgv = (ImageView) findViewById(R.id.imageViewbachi);
         Intent intento = new Intent(getApplicationContext(), Main.class);
         onclickImagenCambiarVista(imgv, intento);
     }
@@ -134,5 +131,68 @@ public class ActividadTutorial extends Base
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+    private List<Video> myCars = new ArrayList<Video>();
 
+    private void populateCarList() {
+        myCars.add(new Video("Estudios Sociales", "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
+        myCars.add(new Video("Matemáticas",  "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
+        myCars.add(new Video("Cívica",  "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
+        myCars.add(new Video("Biología",  "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
+        myCars.add(new Video("Inglés",  "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
+    }
+
+    private void populateListView() {
+        ArrayAdapter<Video> adapter = new MyListAdapter();
+        ListView list = (ListView) findViewById(R.id.cars_listView);
+        list.setAdapter(adapter);
+    }
+
+    private void registerClickCallback() {
+        ListView list = (ListView) findViewById(R.id.cars_listView);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View viewClicked,
+                                    int position, long id) {
+
+                Video clickedCar = myCars.get(position);
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(clickedCar.getDireccion())));
+
+            }
+        });
+    }
+
+    private class MyListAdapter extends ArrayAdapter<Video> {
+        public MyListAdapter()
+        {
+            super(ActividadTutorial.this, R.layout.misvideos, myCars);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Make sure we have a view to work with (may have been given null)
+            View itemView = convertView;
+            if (itemView == null) {
+                itemView = getLayoutInflater().inflate(R.layout.misvideos, parent, false);
+            }
+
+            // Find the car to work with.
+            Video currentCar = myCars.get(position);
+
+            // Fill the view
+            ImageView imageView = (ImageView)itemView.findViewById(R.id.imageViewCarro);
+            imageView.setImageResource(currentCar.getIconID());
+
+            // Make:
+            TextView makeText = (TextView) itemView.findViewById(R.id.textViewFabricante);
+            makeText.setText(currentCar.getNombre());
+
+            // Year:
+            TextView yearText = (TextView) itemView.findViewById(R.id.textViewYear);
+            yearText.setText("" + currentCar.getDireccion());
+
+            return itemView;
+        }
+    }
+
+    public void Mensaje(String msg){Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();};
 }
