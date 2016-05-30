@@ -36,7 +36,7 @@ public class ActividadLogin extends Base
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_login);
-
+/*
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -44,7 +44,7 @@ public class ActividadLogin extends Base
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+                (DrawerLayout) findViewById(R.id.drawer_layout));*/
         CambiarColorFondoActivity(Color.GRAY);
 
         VariablesGlobales vg=VariablesGlobales.getInstance();
