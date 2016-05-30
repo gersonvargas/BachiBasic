@@ -14,8 +14,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
@@ -93,10 +101,14 @@ public class Main extends Base {
         if (savedInstanceState == null) {
             selectItem(0);
         }
-
+        CargarInfo();
        // playAudio();
         inicializarBase();
-    }
+
+        RelativeLayout ly = (RelativeLayout) findViewById(R.id.content_frame);
+        ly.setBackgroundResource(R.drawable.libro);
+
+    }//fin oncreate
     public void inicializarBase(){
         CrearBD();
     if(BorrarDatos()){
@@ -158,8 +170,11 @@ public void elegirVista(int position){
         startActivity(intento);
     }
     if(position==2) {
-        Intent intento = new Intent(getApplicationContext(), ActividadLogin.class);
-        startActivity(intento);
+
+            Intent intento = new Intent(getApplicationContext(), ActividadLogin.class);
+            startActivity(intento);
+
+
     }
     if(position==3) {
         Intent intento = new Intent(getApplicationContext(), ActividadRegistrar.class);
@@ -190,5 +205,39 @@ public void elegirVista(int position){
         // Cambiar las configuraciones del drawer si hubo modificaciones
         drawerToggle.onConfigurationChanged(newConfig);
     }
+    public void CargarInfo(){
+        InputStream miarchivo = getResources().openRawResource(R.raw.datoscuriosos);
+        //Mensaje(DeInputStringaString(miarchivo).get(1).toString());
+        TextView editor= (TextView)findViewById(R.id.textView3);
 
+        ArrayList lista=DeInputStringaString(miarchivo);
+        int numeroAleatorio = (int) (Math.random()*lista.size());
+        numeroAleatorio--;
+        editor.setText(lista.get(numeroAleatorio).toString());
+    }
+    private ArrayList DeInputStringaString(InputStream is) {
+        BufferedReader br = null;
+        StringBuilder sb = new StringBuilder();
+        String line;
+        ArrayList listacuriosa=new ArrayList();
+        try {
+            br = new BufferedReader(new InputStreamReader(is));
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+                listacuriosa.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {br.close();}
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return listacuriosa;
+    }
 }

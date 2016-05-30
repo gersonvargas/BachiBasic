@@ -47,7 +47,14 @@ public class ActividadLogin extends Base
                 (DrawerLayout) findViewById(R.id.drawer_layout));
         CambiarColorFondoActivity(Color.GRAY);
 
-
+        VariablesGlobales vg=VariablesGlobales.getInstance();
+        if(!vg.getSessionemail().equals("")&&!vg.getSessionpass().equals("")) {
+            TextView Mi_textview = (TextView) findViewById(R.id.loginemail);
+            TextView Mi_textview2 = (TextView) findViewById(R.id.loginpassword);
+            Mensaje(vg.getSessionemail());
+            Mi_textview.setText(vg.getSessionemail());
+            Mi_textview2.setText(vg.getSessionpass());
+        }
         Button miboton= (Button) findViewById(R.id.btniniciar);
         miboton.setOnClickListener(new View.OnClickListener() {
 
@@ -57,8 +64,14 @@ public class ActividadLogin extends Base
 
                 CrearBD();
                 TextView Mi_textview = (TextView) findViewById(R.id.loginemail);
-                Mensaje(Mi_textview.getText().toString());
-                if (ObtenerUsuario(Mi_textview.getText().toString())) {
+                TextView Mi_textview2 = (TextView) findViewById(R.id.loginpassword);
+                //Mensaje(Mi_textview.getText().toString());
+              VariablesGlobales vg=VariablesGlobales.getInstance();
+                if(vg.getSessionemail().equals("")&&vg.getSessionpass().equals("")) {
+                    vg.setSessionpass(Mi_textview2.getText().toString());
+                    vg.setSessionemail(Mi_textview.getText().toString());
+                }
+                    if (ObtenerUsuario(vg.getSessionemail(),vg.getSessionpass())) {
                     if (valido) {
                         Intent intento = new Intent(getApplicationContext(), ActividadPreguntas.class);
                         startActivity(intento);

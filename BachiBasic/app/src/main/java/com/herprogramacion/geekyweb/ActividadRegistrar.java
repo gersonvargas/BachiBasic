@@ -87,7 +87,9 @@ public class ActividadRegistrar extends Base {
         String ap2=Mi_textview.getText().toString();
         Mi_textview = (TextView) findViewById(R.id.txtemail);
         String email=Mi_textview.getText().toString();
-        if(AgregarUsuario(nombre,ap1,ap2,email)){
+        Mi_textview = (TextView) findViewById(R.id.txtpass);
+        String pass=Mi_textview.getText().toString();
+        if(AgregarUsuario(nombre,pass,ap1,ap2,email)){
             return true;
         }else
             return false;

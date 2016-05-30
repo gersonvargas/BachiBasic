@@ -51,10 +51,10 @@ public class Base extends ActionBarActivity {
 
         db.close();
     }
-    public boolean AgregarUsuario(String nombre,String ap1,String ap2,String email) {
+    public boolean AgregarUsuario(String nombre,String pass,String ap1,String ap2,String email) {
         db.open();
         boolean bandera=false;
-        if (db.insertUsuario(nombre, ap1, ap2, email) >= 0) {
+        if (db.insertUsuario(nombre,pass, ap1, ap2, email) >= 0) {
             Mensaje("Pregunta agregada correctamente: "+email);
            bandera=true;
         }
@@ -90,12 +90,12 @@ public class Base extends ActionBarActivity {
             Mensaje("No se encontró el dato");
         db.close();
     }
-    public boolean ObtenerUsuario(String email) {
+    public boolean ObtenerUsuario(String email,String pass) {
         //---cargar un contacto ---
         boolean bandera=false;
         db.open();
         Cursor c = db.ObtenerUsuario(email);
-        if (c.moveToFirst()) {
+        if (c.moveToFirst()&&c.getString(2).equals(pass)) {
             bandera=true;
         }
         db.close();

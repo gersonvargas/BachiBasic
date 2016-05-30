@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +34,12 @@ public class ActividadPreguntas extends Base  {
         Mi_chronometer.start();
         advertir();
     }
-
+public void aumentar(int n){
+    ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar);
+    TextView progreso=(TextView)findViewById(R.id.textViewtiempotranscurrido);
+    progreso.setText(n+"%");
+    progressBar.setProgress(n);
+}
     public void opcionSeleccionada(){
                 RadioButton rb1 = (RadioButton) findViewById(R.id.radioButtonopc1);
                 RadioButton rb2 = (RadioButton) findViewById(R.id.radioButtonopc2);
@@ -114,6 +121,9 @@ static boolean continua=true;
                             ReproducirAudio(R.raw.correcto);
                             vg.setCorrectas(vg.getCorrectas() + 1);
                         }
+                        int x=i;
+                        int res=(100*(x+1))/preguntas.size();
+                        aumentar(res);
                         cambiarPreguntas(pre.getDescripcion());
                         ImageView midib = (ImageView) findViewById(R.id.imageView2);
                         String nombre = "";

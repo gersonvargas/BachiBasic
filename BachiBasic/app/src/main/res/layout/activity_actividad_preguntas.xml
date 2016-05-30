@@ -18,17 +18,15 @@
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="35dp"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:id="@+id/progressBar"
-        android:background="#ffffff"
-        android:progress="10"
         android:max="100"
-        android:indeterminate="true"
         android:layout_alignRight="@+id/textViewtiempotranscurrido"
         android:layout_alignEnd="@+id/textViewtiempotranscurrido"
         android:layout_below="@+id/imageViewbachi"
         android:layout_alignLeft="@+id/textViewtiempotranscurrido"
-        android:layout_alignStart="@+id/textViewtiempotranscurrido" />
+        android:layout_alignStart="@+id/textViewtiempotranscurrido"
+        android:indeterminate="false" />
 
 
     <Chronometer
@@ -37,7 +35,7 @@
         android:id="@+id/chronometer"
         android:text="Medium Text"
         android:textColor="#FFFFFF"
-        android:textSize="50dp"
+        android:textSize="35dp"
         android:layout_above="@+id/scrollView"
         android:layout_alignRight="@+id/scrollView"
         android:layout_alignEnd="@+id/scrollView" />
@@ -46,7 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="% completado"
+        android:textSize="25dp"
+        android:text="%"
         android:id="@+id/textViewtiempotranscurrido"
         android:layout_above="@+id/progressBar"
         android:layout_centerHorizontal="true" />

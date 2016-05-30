@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@drawable/libro"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -18,13 +18,20 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageViewbachi">
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/imageView2"
         android:layout_toStartOf="@+id/imageView2"
-        android:layout_below="@+id/imageViewbachi">
+        android:layout_below="@+id/imageViewbachi"
+        android:id="@+id/tableLayout2">
 
         <TableRow>
 
@@ -123,6 +130,20 @@
                 android:layout_column="2"
                 android:id="@+id/txtemail" />
         </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Contraseña"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1" />
+            <EditText
+                android:width="100px"
+                android:inputType="textPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:id="@+id/txtpass" />
+        </TableRow>
 
         <TableRow
             android:layout_width="wrap_content"
@@ -135,17 +156,26 @@
                 />
         </TableRow>
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <Button
+                style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="75dp"
+                android:layout_marginLeft="25dp"
+
                 android:text="Registrar"
                 android:id="@+id/btnregistrar"
-                android:background="@android:color/darker_gray"
+                android:background="#2697cc"
                 android:layout_column="2" />
         </TableRow>
+
     </TableLayout>
+
+
+    </ScrollView>
+
 
 </RelativeLayout>

@@ -24,10 +24,11 @@ public class DBAdapter {
                     + "descripcion text not null, opc1 text not null,opc2 text not null,opc3 text not null" +
                     ",opc4 text not null,opccorrecta text not null,imagen text not null);";
     static final String KEY_NOMBRE = "nombre";
+    static final String KEY_PASS = "pass";
     static final String KEY_AP1 = "apellido1";
     static final String KEY_AP2 = "apellido2";
     static final String KEY_EMAIL= "email";
-    static final String DATABASE_CREATE_USUARIO ="create table usuario (nombre text not null,apellido1 text not null," +
+    static final String DATABASE_CREATE_USUARIO ="create table usuario (nombre text not null,pass text not null,apellido1 text not null," +
             "apellido2 text not null,email text primary key);";
 
     final Context context;
@@ -91,10 +92,11 @@ public class DBAdapter {
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
     //---Insertamos un dato en la BD---
-    public long insertUsuario(String nombre, String ap1,String ap2,String email)
+    public long insertUsuario(String nombre,String pass, String ap1,String ap2,String email)
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NOMBRE, nombre);
+        initialValues.put(KEY_PASS, pass);
         initialValues.put(KEY_AP1,ap1);
         initialValues.put(KEY_AP2,ap2);
         initialValues.put(KEY_EMAIL,email);
@@ -127,7 +129,7 @@ public class DBAdapter {
     }
     public Cursor CargarTodosLosUsuarios()
     {
-        return db.query("usuario", new String[] {KEY_NOMBRE, KEY_AP1,
+        return db.query("usuario", new String[] {KEY_NOMBRE,KEY_PASS, KEY_AP1,
                 KEY_AP2,KEY_EMAIL}, null, null, null, null, null);
     }
     //---recuperamos un dato particular---
@@ -145,7 +147,7 @@ public class DBAdapter {
     public Cursor ObtenerUsuario(String email) throws SQLException
     {
         Cursor mCursor =
-                db.query(true, "usuario", new String[] {KEY_NOMBRE, KEY_AP1,
+                db.query(true, "usuario", new String[] {KEY_NOMBRE,KEY_PASS, KEY_AP1,
                                 KEY_AP2,KEY_EMAIL}, KEY_EMAIL + "=\"" + email+"\"", null,
                         null, null, null, null);
         if (mCursor != null) {
@@ -168,10 +170,11 @@ public class DBAdapter {
                 DATABASE_TABLE, args, KEY_ROWID + "=" + pregunta.getNumero(), null) > 0;
     }
     //---Actualizamos un dato---
-    public boolean ActualizarUsuario(String nombre, String ap1,String ap2,String email)
+    public boolean ActualizarUsuario(String nombre,String pass, String ap1,String ap2,String email)
     {
         ContentValues args = new ContentValues();
         args.put(KEY_NOMBRE, nombre);
+        args.put(KEY_PASS, pass);
         args.put(KEY_AP1, ap1);
         args.put(KEY_AP2, ap2);
         return db.update(

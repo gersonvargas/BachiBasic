@@ -13,11 +13,15 @@ public class VariablesGlobales {
    private int correctas;
     private int incorretas;
     private int cantidadPreguntas;
+    private String sessionemail;
+    private String sessionpass;
 
     protected VariablesGlobales() {
         this.correctas=0;
         this.incorretas=0;
         this.cantidadPreguntas=0;
+        this.sessionemail="";
+        this.sessionpass="";
     }
     public static VariablesGlobales getInstance() {
         if(instance == null) {
@@ -27,6 +31,22 @@ public class VariablesGlobales {
     }
     //Colocar en la clase Base
 
+
+    public String getSessionemail() {
+        return sessionemail;
+    }
+
+    public void setSessionemail(String sessionemail) {
+        this.sessionemail = sessionemail;
+    }
+
+    public String getSessionpass() {
+        return sessionpass;
+    }
+
+    public void setSessionpass(String sessionpass) {
+        this.sessionpass = sessionpass;
+    }
 
     public int getCorrectas() {
         return correctas;

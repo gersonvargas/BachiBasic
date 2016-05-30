@@ -39,4 +39,5 @@ public class DrawerListAdapter extends ArrayAdapter<DrawerItem> {
 
         return convertView;
     }
+
 }
