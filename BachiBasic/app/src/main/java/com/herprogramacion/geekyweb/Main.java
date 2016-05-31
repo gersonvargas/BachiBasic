@@ -103,13 +103,13 @@ public class Main extends Base {
         }
         CargarInfo();
        // playAudio();
-        inicializarBase();
+      //  inicializarBase();
 
         RelativeLayout ly = (RelativeLayout) findViewById(R.id.content_frame);
         ly.setBackgroundResource(R.drawable.libro);
 
     }//fin oncreate
-    public void inicializarBase(){
+   /* public void inicializarBase(){
         CrearBD();
     if(BorrarDatos()){
          Mensaje("Se ha limpiado la base de datos!");
@@ -123,7 +123,7 @@ public class Main extends Base {
                 "Pregunta sobre no se que" +
                 "Pregunta sobre no se que "+i, opcs, 1, 1,R.drawable.question));
     }
-
+*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

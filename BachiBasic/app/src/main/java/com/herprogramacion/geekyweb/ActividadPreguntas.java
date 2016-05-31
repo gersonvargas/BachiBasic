@@ -16,6 +16,10 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 /*https://www.youtube.com/watch?v=ibDstPTwBdw&list=RDibDstPTwBdw#t=0*/
 public class ActividadPreguntas extends Base  {
@@ -95,14 +99,13 @@ static boolean continua=true;
 
     @Override
     public void onBackPressed(){
-
             DialogoSiNo();
     }
     public void ajustarEventos(){
-        final TextView preguta = (TextView) findViewById(R.id.editTextpreguntas);
+       // final TextView preguta = (TextView) findViewById(R.id.editTextpreguntas);
 
         CrearBD();
-       final ArrayList<Pregunta> preguntas = ObtenerDatos();
+       final ArrayList<Pregunta> preguntas =CargarInfo();// ObtenerDatos();
         Button MiBoton = (Button) findViewById(R.id.btnSiguiente);
         MiBoton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,18 +124,15 @@ static boolean continua=true;
                             ReproducirAudio(R.raw.correcto);
                             vg.setCorrectas(vg.getCorrectas() + 1);
                         }
-                        int x=i;
-                        int res=(100*(x+1))/preguntas.size();
+                        int x = i;
+                        int res = (100 * (x + 1)) / preguntas.size();
                         aumentar(res);
                         cambiarPreguntas(pre.getDescripcion());
                         ImageView midib = (ImageView) findViewById(R.id.imageView2);
                         String nombre = "";
-
                         midib.setImageResource(pre.getImagen());
-                        //String[] opcs = {"Caspio", "Caribe", "Del Norte", "Mediterraneo"};
                         cambiarOpciones(pre.getOpciones());
                         opcionSeleccionada = -1;
-                        //limpiarElementos();
                     } else {
                         i = -1;
                         vg.setCantidadPreguntas(preguntas.size());
@@ -194,6 +194,48 @@ static boolean continua=true;
         AlertDialog alert11 = builder1.create();
         alert11.show();
     };
+    public ArrayList<Pregunta> CargarInfo(){
+        VariablesGlobales vg=VariablesGlobales.getInstance();
 
+        InputStream miarchivo;
+        if(vg.getTipoTest()==1) {
+            miarchivo = getResources().openRawResource(R.raw.biologia);
+        }else{
+            miarchivo = getResources().openRawResource(R.raw.biologia);
+        }
+        ArrayList<Pregunta> lista=DeInputStringaString(miarchivo);
+
+
+        return lista;
+    }
+    private ArrayList<Pregunta> DeInputStringaString(InputStream is) {
+        BufferedReader br = null;
+       // StringBuilder sb = new StringBuilder();
+        String line;
+        ArrayList<Pregunta> listacuriosa=new ArrayList();
+        try {
+            br = new BufferedReader(new InputStreamReader(is));
+            while ((line = br.readLine()) != null) {
+                String descripcion=line;
+                String opciones[]={br.readLine(),br.readLine(),br.readLine(),br.readLine()};
+                int correcta=Integer.parseInt(br.readLine());
+                Pregunta pregunta=new Pregunta(descripcion,opciones,0,correcta,R.drawable.question);
+               // sb.append(line);
+                listacuriosa.add(pregunta);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {br.close();}
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return listacuriosa;
+    }
 }
 

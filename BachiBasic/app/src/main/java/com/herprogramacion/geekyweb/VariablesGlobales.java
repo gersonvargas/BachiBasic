@@ -15,6 +15,7 @@ public class VariablesGlobales {
     private int cantidadPreguntas;
     private String sessionemail;
     private String sessionpass;
+    private int tipoTest;
 
     protected VariablesGlobales() {
         this.correctas=0;
@@ -22,6 +23,7 @@ public class VariablesGlobales {
         this.cantidadPreguntas=0;
         this.sessionemail="";
         this.sessionpass="";
+        tipoTest=0;
     }
     public static VariablesGlobales getInstance() {
         if(instance == null) {
@@ -31,6 +33,14 @@ public class VariablesGlobales {
     }
     //Colocar en la clase Base
 
+
+    public int getTipoTest() {
+        return tipoTest;
+    }
+
+    public void setTipoTest(int tipoTest) {
+        this.tipoTest = tipoTest;
+    }
 
     public String getSessionemail() {
         return sessionemail;

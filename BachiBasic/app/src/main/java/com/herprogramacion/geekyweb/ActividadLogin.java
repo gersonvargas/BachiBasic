@@ -180,9 +180,10 @@ public class ActividadLogin extends Base
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 if (position != 0) {
+                    VariablesGlobales.getInstance().setTipoTest(position);
                     valido = true;
                 }
-                //Mensaje(position+"");
+                Mensaje(position+"");
             }
 
             @Override
