@@ -38,7 +38,7 @@ public class ActividadTutorial extends Base
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_tutorial);
-
+/*
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -46,7 +46,7 @@ public class ActividadTutorial extends Base
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));
+                (DrawerLayout) findViewById(R.id.drawer_layout));*/
         populateCarList();
         populateListView();
         registerClickCallback();
@@ -134,11 +134,12 @@ public class ActividadTutorial extends Base
     private List<Video> myCars = new ArrayList<Video>();
 
     private void populateCarList() {
-        myCars.add(new Video("Estudios Sociales", "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
-        myCars.add(new Video("Matemáticas",  "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
-        myCars.add(new Video("Cívica",  "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
-        myCars.add(new Video("Biología",  "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
-        myCars.add(new Video("Inglés",  "https://www.youtube.com/watch?v=QxZqTWBWXI4",R.drawable.youtube));
+        myCars.add(new Video("Estudios Sociales", "https://www.youtube.com/watch?v=N_ZbTG7AYGU&list=PLERIktx0fWx5--ts3vSfpPjj2QM8XCVN9",R.drawable.tierra));
+        myCars.add(new Video("Matemáticas",  "https://www.youtube.com/watch?v=KKzFzR0qFOo",R.drawable.mate));
+        myCars.add(new Video("Educación Cívica",  "https://www.youtube.com/watch?v=5QURzx5m-hI&list=PLHSMBZFwrC9Z35uAnsX4OHGcDGrZVoshG",R.drawable.civica));
+        myCars.add(new Video("Biología",  "https://www.youtube.com/watch?v=n8lxbZCE8t4&list=PLHSMBZFwrC9ZiP5mIexUTtKxqSfi1JjCd",R.drawable.biologia));
+        myCars.add(new Video("Español",  "https://www.youtube.com/watch?v=bGxhZfvAbLw&list=PL5WRVdz1U50UUvLTZaNcTwnnrjINx3iRK",R.drawable.espanol));
+        myCars.add(new Video("Inglés",  "https://www.youtube.com/watch?v=dkgjfI_ezkc",R.drawable.ingles));
     }
 
     private void populateListView() {
@@ -181,14 +182,12 @@ public class ActividadTutorial extends Base
             // Fill the view
             ImageView imageView = (ImageView)itemView.findViewById(R.id.imageViewCarro);
             imageView.setImageResource(currentCar.getIconID());
-
             // Make:
             TextView makeText = (TextView) itemView.findViewById(R.id.textViewFabricante);
-            makeText.setText(currentCar.getNombre());
-
+            makeText.setText("Materia: "+currentCar.getNombre());
             // Year:
-            TextView yearText = (TextView) itemView.findViewById(R.id.textViewYear);
-            yearText.setText("" + currentCar.getDireccion());
+           // TextView yearText = (TextView) itemView.findViewById(R.id.textViewYear);
+           // yearText.setText("" + currentCar.getDireccion());
 
             return itemView;
         }
