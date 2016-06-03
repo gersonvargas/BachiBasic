@@ -55,7 +55,7 @@ public class Base extends ActionBarActivity {
     public void AgregarDato(Pregunta pregunta) {
         db.open();
         if (db.insertDato(pregunta) >= 0) {
-            Mensaje("Pregunta agregada correctamente: "+pregunta.getDescripcion());
+            //Mensaje("Pregunta agregada correctamente: "+pregunta.getDescripcion());
         }
 
         db.close();
@@ -64,7 +64,7 @@ public class Base extends ActionBarActivity {
         db.open();
         boolean bandera=false;
         if (db.insertUsuario(nombre,pass, ap1, ap2, email,logoImage) >= 0) {
-            Mensaje("Pregunta agregada correctamente: "+email);
+            Mensaje("Usuario agregado correctamente: "+email);
            bandera=true;
         }
         db.close();
@@ -127,19 +127,12 @@ public class Base extends ActionBarActivity {
     }
     public Pregunta MostarDato(Cursor c)
     {
-        /*String descripcion,String []opciones, int numero, int respuesta
-        numero integer primary key autoincrement, "
-            + "descripcion text not null, opc1 text not null,opc2 text not null,opc3 text not null" +
-            ",opc4 text not null,opccorrecta text not null*/
         String []opciones={c.getString(2),c.getString(3),c.getString(4),c.getString(5)};
         Pregunta pregunta=new Pregunta(c.getString(1),opciones,
                 Integer.parseInt(c.getString(0)),Integer.parseInt(c.getString(6)),Integer.parseInt(c.getString(7)));
 
-       // Mensaje("pregunta recuperada" );
         return pregunta;
     }
-
-
     MediaPlayer misonido;
 
     public void ReproducirAudio(int opc){
@@ -147,17 +140,15 @@ public class Base extends ActionBarActivity {
         misonido.start();
 
     }
-
     public void PararReproducirAudio(){
         if(misonido!=null)
         misonido.stop();
 
     }
-
     public void getimage(String i,ImageView imageView){
+        CrearBD();
         db.open();
         db.getimage(i,imageView);
         db.close();
     }
-
 }

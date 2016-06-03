@@ -32,7 +32,7 @@ public class ActividadUsuario extends Base {
         Intent intento = new Intent(getApplicationContext(), Main.class);
         onclickImagenCambiarVista(imgv, intento);
         if(!VariablesGlobales.getInstance().getSessionemail().equals("")) {
-            ImageView imagen = (ImageView) findViewById(R.id.imageViewavatar);
+            ImageView imagen = (ImageView) findViewById(R.id.imageViewavatar2);
             getimage(VariablesGlobales.getInstance().getSessionemail(), imagen);
         }
     }

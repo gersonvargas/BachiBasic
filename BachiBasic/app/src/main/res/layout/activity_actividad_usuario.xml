@@ -61,7 +61,7 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="100dp"
-                    android:id="@+id/imageViewavatar"
+                    android:id="@+id/imageViewavatar2"
                     android:layout_column="2"
                     android:src="@drawable/usuario" />
 
