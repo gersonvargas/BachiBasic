@@ -158,8 +158,8 @@ public class ActividadLogin extends Base
         final String[] presidents = {
                 "Elija la materia",
                 "Biología",
-                "Español",
                 "Matemáticas",
+                "Español",
                 "Est. Sociales"
         };
         //---Spinner View---

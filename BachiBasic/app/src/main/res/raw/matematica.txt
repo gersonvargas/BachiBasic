@@ -124,7 +124,8 @@ B) 240
 C) 260 
 D) 285
 3
-En un cono circular recto, la medida del diámetro de la base es tres medios de la longitud de la altura del cono. Si su altura mide 12 cm, entonces, ¿cuál es el área total, en centímetros cuadrados, de ese cono? A) 216p 
+En un cono circular recto, la medida del diámetro de la base es tres medios de la longitud de la altura del cono. Si su altura mide 12 cm, entonces, ¿cuál es el área total, en centímetros cuadrados, de ese cono?
+A) 216p
 B) 324p 
 C) 594p 
 D) 1296p

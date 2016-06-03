@@ -225,6 +225,9 @@ public void elegirVista(int position){
         ArrayList lista=DeInputStringaString(miarchivo);
         int numeroAleatorio = (int) (Math.random()*lista.size());
         numeroAleatorio--;
+        if(numeroAleatorio>=0&&numeroAleatorio<lista.size()) {
+
+        }else numeroAleatorio=1;
         editor.setText(lista.get(numeroAleatorio).toString());
     }
     private ArrayList DeInputStringaString(InputStream is) {

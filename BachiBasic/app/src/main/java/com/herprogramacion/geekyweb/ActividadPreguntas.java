@@ -215,7 +215,10 @@ static boolean continua=true;
         InputStream miarchivo;
         if(vg.getTipoTest()==1) {
             miarchivo = getResources().openRawResource(R.raw.biologia);
-        }else{
+        }else if(vg.getTipoTest()==2) {
+            miarchivo = getResources().openRawResource(R.raw.matematica);
+        }else
+         {
             miarchivo = getResources().openRawResource(R.raw.biologia);
         }
         ArrayList<Pregunta> lista=DeInputStringaString(miarchivo);
