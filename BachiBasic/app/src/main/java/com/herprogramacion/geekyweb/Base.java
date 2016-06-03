@@ -2,12 +2,21 @@ package com.herprogramacion.geekyweb;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.apache.http.util.ByteArrayBuffer;
+
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 
@@ -51,14 +60,13 @@ public class Base extends ActionBarActivity {
 
         db.close();
     }
-    public boolean AgregarUsuario(String nombre,String pass,String ap1,String ap2,String email) {
+    public boolean AgregarUsuario(String nombre,String pass,String ap1,String ap2,String email,byte[] logoImage) {
         db.open();
         boolean bandera=false;
-        if (db.insertUsuario(nombre,pass, ap1, ap2, email) >= 0) {
+        if (db.insertUsuario(nombre,pass, ap1, ap2, email,logoImage) >= 0) {
             Mensaje("Pregunta agregada correctamente: "+email);
            bandera=true;
         }
-
         db.close();
         return bandera;
     }
@@ -145,4 +153,11 @@ public class Base extends ActionBarActivity {
         misonido.stop();
 
     }
+
+    public void getimage(String i,ImageView imageView){
+        db.open();
+        db.getimage(i,imageView);
+        db.close();
+    }
+
 }

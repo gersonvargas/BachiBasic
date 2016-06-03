@@ -6,6 +6,12 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 public class DBAdapter {
     static final String KEY_ROWID = "numero";
     static final String KEY_DESCRIPCION = "descripcion";
@@ -28,8 +34,10 @@ public class DBAdapter {
     static final String KEY_AP1 = "apellido1";
     static final String KEY_AP2 = "apellido2";
     static final String KEY_EMAIL= "email";
+    static final String KEY_PHOTO= "foto";
+
     static final String DATABASE_CREATE_USUARIO ="create table usuario (nombre text not null,pass text not null,apellido1 text not null," +
-            "apellido2 text not null,email text primary key);";
+            "apellido2 text not null,email text primary key, foto blob);";
 
     final Context context;
     DatabaseHelper DBHelper;
@@ -92,15 +100,22 @@ public class DBAdapter {
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
     //---Insertamos un dato en la BD---
-    public long insertUsuario(String nombre,String pass, String ap1,String ap2,String email)
+    public long insertUsuario(String nombre,String pass, String ap1,String ap2,String email,byte[] logoImage)
     {
+
+
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_NOMBRE, nombre);
         initialValues.put(KEY_PASS, pass);
         initialValues.put(KEY_AP1,ap1);
         initialValues.put(KEY_AP2,ap2);
         initialValues.put(KEY_EMAIL,email);
-        return db.insert("usuario", null, initialValues);
+        initialValues.put(KEY_PHOTO,logoImage);
+        try {
+            return db.insert("usuario", null, initialValues);
+        }catch(Exception ex){
+        return -1;
+    }
     }
     //---Borramos un dato particular---
     public boolean BorrarDato(long rowId)
@@ -113,7 +128,6 @@ public class DBAdapter {
     }
     public boolean BorrarDatos()
     {
-
         return db.delete(DATABASE_TABLE,"1=1", null) > 0;
     }
     public boolean BorrarUsuarios()
@@ -148,7 +162,7 @@ public class DBAdapter {
     {
         Cursor mCursor =
                 db.query(true, "usuario", new String[] {KEY_NOMBRE,KEY_PASS, KEY_AP1,
-                                KEY_AP2,KEY_EMAIL}, KEY_EMAIL + "=\"" + email+"\"", null,
+                                KEY_AP2,KEY_EMAIL,KEY_PHOTO}, KEY_EMAIL + "=\"" + email+"\"", null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -179,6 +193,30 @@ public class DBAdapter {
         args.put(KEY_AP2, ap2);
         return db.update(
                 "usuario", args, KEY_EMAIL + "=" + email, null) > 0;
+    }
+    public Cursor getImage(String i){
+        Cursor cur =db.query(true, "usuario", new String[]{KEY_NOMBRE,KEY_PASS, KEY_AP1,
+                                KEY_AP2,KEY_EMAIL,KEY_PHOTO}, KEY_EMAIL + "=\"" + i + "\"", null,
+                        null, null, null, null);
+        if (cur != null) {
+            cur.moveToFirst();
+            //if (){
+           // byte[] imgByte = cur.getBlob(5);
+            return cur;//BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+        }
+
+        return null ;
+    }
+    public void getimage(String email,ImageView imageView) throws SQLException{
+        Cursor c= db.rawQuery("select foto from usuario where email='"+email+"'", null);
+        if(c.moveToNext()){
+            byte[] image=c.getBlob(0);
+            Bitmap bmp= BitmapFactory.decodeByteArray(image,0,image.length);
+            imageView.setImageBitmap(bmp);
+        }
+        if(c != null && !c.isClosed()){
+            c.close();
+        }
     }
 }
 

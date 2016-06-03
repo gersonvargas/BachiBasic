@@ -16,6 +16,7 @@ public class VariablesGlobales {
     private String sessionemail;
     private String sessionpass;
     private int tipoTest;
+    private byte[] imagen;
 
     protected VariablesGlobales() {
         this.correctas=0;
@@ -23,6 +24,7 @@ public class VariablesGlobales {
         this.cantidadPreguntas=0;
         this.sessionemail="";
         this.sessionpass="";
+        imagen=null;
         tipoTest=0;
     }
     public static VariablesGlobales getInstance() {
@@ -33,6 +35,14 @@ public class VariablesGlobales {
     }
     //Colocar en la clase Base
 
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
 
     public int getTipoTest() {
         return tipoTest;

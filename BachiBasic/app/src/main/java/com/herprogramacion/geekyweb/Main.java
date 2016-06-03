@@ -2,12 +2,15 @@ package com.herprogramacion.geekyweb;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,11 +22,16 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.apache.http.util.ByteArrayBuffer;
+
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 
@@ -181,8 +189,12 @@ public void elegirVista(int position){
         startActivity(intento);
     }
     if(position==4) {
-        Intent intento = new Intent(getApplicationContext(), ActividadUsuario.class);
-        startActivity(intento);
+        if(!VariablesGlobales.getInstance().getSessionemail().equals("")) {
+            Intent intento = new Intent(getApplicationContext(), ActividadUsuario.class);
+            startActivity(intento);
+        }else{
+            Mensaje("No ha iniciado sesión.");
+        }
     }
 }
     /* Método auxiliar para setear el titulo de la action bar */
@@ -240,4 +252,6 @@ public void elegirVista(int position){
 
         return listacuriosa;
     }
+
+
 }

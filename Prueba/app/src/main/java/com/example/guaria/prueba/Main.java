@@ -45,50 +45,23 @@ public class Main extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-Mensaje(Environment.getExternalStorageDirectory().toString());
+        Mensaje(Environment.getExternalStorageDirectory().toString());
         name = Environment.getExternalStorageDirectory() + "/test.jpg";
         Button btnAction = (Button)findViewById(R.id.btnPic);
         btnAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /**
-                 * Obtenemos los botones de imagen completa y de galer’a para revisar su estatus
-                 * m‡s adelante
-                 */
                 RadioButton rbtnFull = (RadioButton)findViewById(R.id.radbtnFull);
                 RadioButton rbtnGallery = (RadioButton)findViewById(R.id.radbtnGall);
-
-                /**
-                 * Para todos los casos es necesario un intent, si accesamos la c‡mara con la acci—n
-                 * ACTION_IMAGE_CAPTURE, si accesamos la galer’a con la acci—n ACTION_PICK.
-                 * En el caso de la vista previa (thumbnail) no se necesita m‡s que el intent,
-                 * el c—digo e iniciar la actividad. Por eso inicializamos las variables intent y
-                 * code con los valores necesarios para el caso del thumbnail, as’ si ese es el
-                 * bot—n seleccionado no validamos nada en un if.
-                 */
                 Intent intent =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 int code = TAKE_PICTURE;
-
-                /**
-                 * Si la opci—n seleccionada es fotograf’a completa, necesitamos un archivo donde
-                 * guardarla
-                 */
                 if (rbtnFull.isChecked()) {
                     Uri output = Uri.fromFile(new File(name));
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, output);
-                    /**
-                     * Si la opci—n seleccionada es ir a la galer’a, el intent es diferente y el c—digo
-                     * tambiŽn, en la consecuencia de que estŽ chequeado el bot—n de la galer’a se hacen
-                     * esas asignaciones
-                     */
                 } else if (rbtnGallery.isChecked()){
                     intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                     code = SELECT_PICTURE;
                 }
-
-                /**
-                 * Luego, con todo preparado iniciamos la actividad correspondiente.
-                 */
                 startActivityForResult(intent, code);
             }
         });

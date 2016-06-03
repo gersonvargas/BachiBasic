@@ -8,23 +8,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <TextView
+
+
+        <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/scrollView4"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp">
+
+
+
+        <TextView
+            android:layout_width="250dp"
+            android:layout_height="350dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="A pesar del gran número de agentes que la CIA tiene en la India, no pudo descubrir que estaban desarrollando la bomba atómica hasta que hicieron la primera explosión de prueba? "
             android:id="@+id/textView3"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
             android:backgroundTint="#2ac0b3"
             android:foreground="#59d2df"
             android:shadowColor="#74b7b3"
             android:textColor="#45c52c"
+            android:layout_marginTop="73dp"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="108dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_centerHorizontal="true" />
+        </ScrollView>
     </RelativeLayout>
 
     <ListView

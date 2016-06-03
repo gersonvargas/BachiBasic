@@ -9,139 +9,172 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.herprogramacion.geekyweb.ActividadUsuario">
+
     <ImageView
-        android:layout_width="36dp"
-        android:layout_height="35dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/imageViewbachi"
-        android:src="@drawable/logo"/>
-    <TableLayout
+        android:src="@drawable/logo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/imageView2"
-        android:layout_toStartOf="@+id/imageView2"
+        android:id="@+id/scrollView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/imageViewbachi">
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Información del perfil:"
-                android:id="@+id/textView2"
-                android:layout_alignTop="@+id/tableLayout"
-                android:layout_alignRight="@+id/tableLayout"
-                android:layout_alignEnd="@+id/tableLayout"
-                android:layout_column="1"
-                android:gravity="right"
-                android:layout_span="2" />
-
-        </TableRow>
-        <TableRow
+        <TableLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/imageView2"
+            android:layout_toStartOf="@+id/imageView2"
+            android:layout_below="@+id/imageViewbachi"
+            android:id="@+id/tableLayout2">
 
-            <TextView
-                android:text="Imagen:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1" />
+            <TableRow>
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="100dp"
-                android:id="@+id/imageView3"
-                android:layout_column="2"
-                android:src="@drawable/usuario" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Editar Perfil"
+                    android:id="@+id/textView2"
+                    android:layout_alignTop="@+id/tableLayout"
+                    android:layout_alignRight="@+id/tableLayout"
+                    android:layout_alignEnd="@+id/tableLayout"
+                    android:layout_column="1"
+                    android:gravity="center"
+                    android:layout_span="2" />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        </TableRow>
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                <TextView
+                    android:text="Imagen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1" />
 
-            <TextView
-                android:text="Nombre:"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1" />
-            <EditText
-                android:width="200px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:text="Gerson" />
-        </TableRow>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/imageViewavatar"
+                    android:layout_column="2"
+                    android:src="@drawable/usuario" />
 
-        <TableRow></TableRow>
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        <TableRow>
-            <TextView
-                android:text="1º Apellido  "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1" />
+                <TextView
+                    android:text="Nombre:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1" />
+                <EditText
+                    android:width="200px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:id="@+id/txtnombre" />
+            </TableRow>
 
-            <EditText
-                android:width="200px"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:text="Vargas" />
+            <TableRow>
+                <TextView
+                    android:text="1º Apellido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1" />
 
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:text="2º Apellido  "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1" />
-            <EditText
-                android:width="100px"
-                android:text="Galvez"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2" />
-        </TableRow>
-        <TableRow>
-            <TextView
-                android:text="Email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1" />
-            <EditText
-                android:width="100px"
-                android:text="gersonvargas@gmail.com"
-                android:inputType="textEmailAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2" />
-        </TableRow>
+                <EditText
+                    android:width="200px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:id="@+id/txtap1" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ratingBar"
-                android:layout_column="2"
-                />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                <TextView
+                    android:width="100px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="3" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:text="2º Apellido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1" />
+                <EditText
+                    android:width="100px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:id="@+id/txtap2" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:text="Email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1" />
+                <EditText
+                    android:width="100px"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:id="@+id/txtemail" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:text="Contraseña"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1" />
+                <EditText
+                    android:width="100px"
+                    android:inputType="textPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:id="@+id/txtpass" />
+            </TableRow>
 
-            <Button
+            <TableRow
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Editar"
-                android:id="@+id/btneditarperfil"
-                android:background="@android:color/darker_gray"
-                android:layout_column="2" />
-        </TableRow>
-    </TableLayout>
+                android:layout_height="wrap_content">
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ratingBar"
+                    android:layout_column="2"
+                    />
+            </TableRow>
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="75dp"
+                    android:layout_marginLeft="25dp"
+
+                    android:text="Editar"
+                    android:id="@+id/btneditarperfil"
+                    android:background="#2697cc"
+                    android:layout_column="2" />
+            </TableRow>
+
+        </TableLayout>
+
+
+    </ScrollView>
+
 </RelativeLayout>

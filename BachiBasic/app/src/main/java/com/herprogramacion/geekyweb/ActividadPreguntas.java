@@ -23,20 +23,31 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 /*https://www.youtube.com/watch?v=ibDstPTwBdw&list=RDibDstPTwBdw#t=0*/
 public class ActividadPreguntas extends Base  {
+    ArrayList<Pregunta> preguntas;// ObtenerDatos();
     static int opcionSeleccionada=-1;
-    static int i=-1;
+    static int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_preguntas);
         CambiarColorFondoActivity(Color.GRAY);
-        ImageView imgv = (ImageView) findViewById(R.id.imageViewbachi);
-        Intent intento = new Intent(getApplicationContext(), Main.class);
-        onclickImagenCambiarVista(imgv, intento);
+
+        preguntas =CargarInfo();
         ajustarEventos();
         Chronometer Mi_chronometer = (Chronometer) findViewById(R.id.chronometer);
         Mi_chronometer.start();
         advertir();
+        ImageView imagen=(ImageView)findViewById(R.id.imageViewuser);
+        getimage(VariablesGlobales.getInstance().getSessionemail(), imagen);
+
+        ImageView imgv = (ImageView) findViewById(R.id.imageViewbachi);
+        imgv.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View arg0) {
+                DialogoSiNo();
+            }
+        });
     }
 public void aumentar(int n){
     ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar);
@@ -105,7 +116,12 @@ static boolean continua=true;
        // final TextView preguta = (TextView) findViewById(R.id.editTextpreguntas);
 
         CrearBD();
-       final ArrayList<Pregunta> preguntas =CargarInfo();// ObtenerDatos();
+
+        cambiarPreguntas(preguntas.get(0).getDescripcion());
+        ImageView midib = (ImageView) findViewById(R.id.imageView2);
+        midib.setImageResource(preguntas.get(0).getImagen());
+        cambiarOpciones(preguntas.get(0).getOpciones());
+
         Button MiBoton = (Button) findViewById(R.id.btnSiguiente);
         MiBoton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,11 +141,10 @@ static boolean continua=true;
                             vg.setCorrectas(vg.getCorrectas() + 1);
                         }
                         int x = i;
-                        int res = (100 * (x + 1)) / preguntas.size();
+                        int res = (100 * x) / preguntas.size();
                         aumentar(res);
                         cambiarPreguntas(pre.getDescripcion());
                         ImageView midib = (ImageView) findViewById(R.id.imageView2);
-                        String nombre = "";
                         midib.setImageResource(pre.getImagen());
                         cambiarOpciones(pre.getOpciones());
                         opcionSeleccionada = -1;

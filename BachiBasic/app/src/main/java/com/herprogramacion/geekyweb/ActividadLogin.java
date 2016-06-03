@@ -2,7 +2,9 @@ package com.herprogramacion.geekyweb;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.Image;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -36,15 +38,6 @@ public class ActividadLogin extends Base
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actividad_login);
-/*
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
-                getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getTitle();
-
-        // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                R.id.navigation_drawer,
-                (DrawerLayout) findViewById(R.id.drawer_layout));*/
         CambiarColorFondoActivity(Color.GRAY);
 
         VariablesGlobales vg=VariablesGlobales.getInstance();
@@ -164,11 +157,11 @@ public class ActividadLogin extends Base
         Spinner s1;
         final String[] presidents = {
                 "Elija la materia",
+                "Biología",
                 "Español",
                 "Matemáticas",
                 "Est. Sociales"
         };
-
         //---Spinner View---
         s1 = (Spinner) findViewById(R.id.spinnermateria);
 
@@ -183,7 +176,6 @@ public class ActividadLogin extends Base
                     VariablesGlobales.getInstance().setTipoTest(position);
                     valido = true;
                 }
-                Mensaje(position+"");
             }
 
             @Override
