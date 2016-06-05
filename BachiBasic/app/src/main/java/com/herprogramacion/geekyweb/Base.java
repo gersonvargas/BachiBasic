@@ -18,6 +18,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Base extends ActionBarActivity {
@@ -63,7 +65,7 @@ public class Base extends ActionBarActivity {
     public boolean AgregarUsuario(String nombre,String pass,String ap1,String ap2,String email,byte[] logoImage) {
         db.open();
         boolean bandera=false;
-        if (db.insertUsuario(nombre,pass, ap1, ap2, email,logoImage) >= 0) {
+        if (db.insertUsuario(nombre, pass, ap1, ap2, email, logoImage) >= 0) {
             Mensaje("Usuario agregado correctamente: "+email);
            bandera=true;
         }
@@ -98,16 +100,37 @@ public class Base extends ActionBarActivity {
             Mensaje("No se encontró el dato");
         db.close();
     }
+    public String[] ObtenerUsuariovalores(String email) {
+        //---cargar un contacto ---
+        String[]valores=null;
+        db.open();
+        Cursor c = db.ObtenerUsuario(email);
+        if (c.moveToFirst())
+           valores= MostarDato2(c);
+        else
+            Mensaje("No se encontró el dato");
+        db.close();
+        return valores;
+    }
     public boolean ObtenerUsuario(String email,String pass) {
         //---cargar un contacto ---
         boolean bandera=false;
         db.open();
         Cursor c = db.ObtenerUsuario(email);
-        if (c.moveToFirst()&&c.getString(2).equals(pass)) {
+        //Mensaje(c.getString(2));
+        if (c.moveToFirst()&&c.getString(1).equals(pass)) {
             bandera=true;
         }
         db.close();
         return bandera;
+    }
+    public boolean ActualizarUsuario(String nombre,String pass, String ap1,String ap2,String email,byte[] logoImage)
+    {
+        CrearBD();
+        db.open();
+        boolean res= db.ActualizarUsuario(nombre, pass, ap1, ap2, email, logoImage);
+        db.close();
+        return res;
     }
     public void ActualizarDato(Pregunta pregunta) {
         //---update a contact---
@@ -133,6 +156,11 @@ public class Base extends ActionBarActivity {
 
         return pregunta;
     }
+    public String[] MostarDato2(Cursor c)
+    {
+        String []opciones={c.getString(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4)};
+        return opciones;
+    }
     MediaPlayer misonido;
 
     public void ReproducirAudio(int opc){
@@ -150,5 +178,20 @@ public class Base extends ActionBarActivity {
         db.open();
         db.getimage(i,imageView);
         db.close();
+    }
+
+    //Expresion regular validar correo
+    private  final String PATTERN_EMAIL = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+    public boolean validateEmail(String email) {
+
+        // Compiles the given regular expression into a pattern.
+        Pattern pattern = Pattern.compile(PATTERN_EMAIL);
+
+        // Match the given input against this pattern
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+
     }
 }

@@ -44,7 +44,7 @@ public class ActividadLogin extends Base
         if(!vg.getSessionemail().equals("")&&!vg.getSessionpass().equals("")) {
             TextView Mi_textview = (TextView) findViewById(R.id.loginemail);
             TextView Mi_textview2 = (TextView) findViewById(R.id.loginpassword);
-            Mensaje(vg.getSessionemail());
+
             Mi_textview.setText(vg.getSessionemail());
             Mi_textview2.setText(vg.getSessionpass());
         }
@@ -54,7 +54,6 @@ public class ActividadLogin extends Base
             @Override
 
             public void onClick(View arg0) {
-
                 CrearBD();
                 TextView Mi_textview = (TextView) findViewById(R.id.loginemail);
                 TextView Mi_textview2 = (TextView) findViewById(R.id.loginpassword);
@@ -64,6 +63,7 @@ public class ActividadLogin extends Base
                     vg.setSessionpass(Mi_textview2.getText().toString());
                     vg.setSessionemail(Mi_textview.getText().toString());
                 }
+
                     if (ObtenerUsuario(vg.getSessionemail(),vg.getSessionpass())) {
                     if (valido) {
                         Intent intento = new Intent(getApplicationContext(), ActividadPreguntas.class);
@@ -160,6 +160,8 @@ public class ActividadLogin extends Base
                 "Biología",
                 "Matemáticas",
                 "Español",
+                "Inglés",
+                "Cívica",
                 "Est. Sociales"
         };
         //---Spinner View---

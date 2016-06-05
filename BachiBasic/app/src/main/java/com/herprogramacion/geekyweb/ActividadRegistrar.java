@@ -44,7 +44,7 @@ public class ActividadRegistrar extends Base {
     private String name = "";
 
         private final String ruta_fotos = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/misfotos/";
-      /*private Button boton;*/
+
      private File file = new File(ruta_fotos);
     public String file2="";
     @Override
@@ -61,24 +61,10 @@ public class ActividadRegistrar extends Base {
 
         imgv = (ImageView) findViewById(R.id.imageViewavatar);
         name = Environment.getExternalStorageDirectory() + "/test.jpg";
-
-
               imgv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogoSiNo(findViewById(R.id.imageViewavatar));
-               /* RadioButton rbtnFull = (RadioButton)findViewById(R.id.radbtnFull);
-                RadioButton rbtnGallery = (RadioButton)findViewById(R.id.radbtnGall);
-                Intent intent =  new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                int code = TAKE_PICTURE;
-                if (rbtnFull.isChecked()) {
-                    Uri output = Uri.fromFile(new File(name));
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, output);
-                } else if (rbtnGallery.isChecked()){
-                    intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                    code = SELECT_PICTURE;
-                }
-                startActivityForResult(intent, code);*/
     }
 });
 
@@ -116,10 +102,15 @@ public class ActividadRegistrar extends Base {
         byte[] image=stream.toByteArray();
         //String img_str = Base64.encodeToString(image, 0);
       //http://stackoverflow.com/questions/7331310/how-to-store-image-as-blob-in-sqlite-how-to-retrieve-it
+        if(validateEmail(email)){
         if(AgregarUsuario(nombre,pass,ap1,ap2,email,image)){
             return true;
-        }else
+        }else {
             return false;
+        }}else{
+            Mensaje("Correo incorrecto");
+            return false;
+        }
     }
     @SuppressLint("SimpleDateFormat")
       private String getCode()

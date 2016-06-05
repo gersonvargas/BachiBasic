@@ -211,12 +211,17 @@ static boolean continua=true;
     };
     public ArrayList<Pregunta> CargarInfo(){
         VariablesGlobales vg=VariablesGlobales.getInstance();
-
         InputStream miarchivo;
         if(vg.getTipoTest()==1) {
             miarchivo = getResources().openRawResource(R.raw.biologia);
         }else if(vg.getTipoTest()==2) {
             miarchivo = getResources().openRawResource(R.raw.matematica);
+        }else if(vg.getTipoTest()==3) {
+            miarchivo = getResources().openRawResource(R.raw.espanol);
+        }else if(vg.getTipoTest()==4) {
+            miarchivo = getResources().openRawResource(R.raw.ingles);
+        }else if(vg.getTipoTest()==5) {
+            miarchivo = getResources().openRawResource(R.raw.civica);
         }else
          {
             miarchivo = getResources().openRawResource(R.raw.biologia);

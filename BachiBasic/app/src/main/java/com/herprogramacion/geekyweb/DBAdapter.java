@@ -184,15 +184,16 @@ public class DBAdapter {
                 DATABASE_TABLE, args, KEY_ROWID + "=" + pregunta.getNumero(), null) > 0;
     }
     //---Actualizamos un dato---
-    public boolean ActualizarUsuario(String nombre,String pass, String ap1,String ap2,String email)
+    public boolean ActualizarUsuario(String nombre,String pass, String ap1,String ap2,String email,byte[] logoImage)
     {
+
         ContentValues args = new ContentValues();
         args.put(KEY_NOMBRE, nombre);
         args.put(KEY_PASS, pass);
         args.put(KEY_AP1, ap1);
         args.put(KEY_AP2, ap2);
-        return db.update(
-                "usuario", args, KEY_EMAIL + "=" + email, null) > 0;
+        args.put(KEY_PHOTO, logoImage);
+        return db.update("usuario", args, KEY_EMAIL + "='"+email+"'", null) > 0;
     }
     public Cursor getImage(String i){
         Cursor cur =db.query(true, "usuario", new String[]{KEY_NOMBRE,KEY_PASS, KEY_AP1,
