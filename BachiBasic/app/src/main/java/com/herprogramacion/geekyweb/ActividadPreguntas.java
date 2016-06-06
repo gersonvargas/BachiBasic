@@ -222,6 +222,9 @@ static boolean continua=true;
             miarchivo = getResources().openRawResource(R.raw.ingles);
         }else if(vg.getTipoTest()==5) {
             miarchivo = getResources().openRawResource(R.raw.civica);
+        }
+        else if(vg.getTipoTest()==6) {
+            miarchivo = getResources().openRawResource(R.raw.sociales);
         }else
          {
             miarchivo = getResources().openRawResource(R.raw.biologia);

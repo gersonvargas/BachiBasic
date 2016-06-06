@@ -63,9 +63,12 @@ public class ActividadLogin extends Base
                     vg.setSessionpass(Mi_textview2.getText().toString());
                     vg.setSessionemail(Mi_textview.getText().toString());
                 }
+                    if (ObtenerUsuario(Mi_textview.getText().toString(),Mi_textview2.getText().toString())) {
 
-                    if (ObtenerUsuario(vg.getSessionemail(),vg.getSessionpass())) {
                     if (valido) {
+                        vg.setSessionpass(Mi_textview2.getText().toString());
+                        vg.setSessionemail(Mi_textview.getText().toString());
+
                         Intent intento = new Intent(getApplicationContext(), ActividadPreguntas.class);
                         startActivity(intento);
                     } else
