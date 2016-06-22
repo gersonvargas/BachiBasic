@@ -181,7 +181,7 @@ private void actualizaruser(){
                             Uri output = Uri.fromFile(new File(name));
                             intent.putExtra(MediaStore.EXTRA_OUTPUT, output);
                         }else
-                        if (which == 0) {
+                        if (which == 2) {
                             intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
                             code = SELECT_PICTURE;
                         }
